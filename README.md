@@ -1,1 +1,1 @@
-# devoxx2020-contract-testing
+# Ne cassez plus vos consommateurs grâce au contract testing
