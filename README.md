@@ -1,4 +1,4 @@
-# devoxx2020-contract-testing
+# Ne cassez plus vos consommateurs grâce au contract testing
 
 Livrer un (micro) service pour s'apercevoir que l’on a cassé l’environnement, c’est agaçant.
 
