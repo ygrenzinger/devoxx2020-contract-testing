@@ -9,3 +9,12 @@ Dans cet atelier, nous présenterons comment mettre en place le test de contrat,
 
 Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Spring Boot, ainsi que Pact ayant l’avantage d’être polyglotte. 
 
+## Todo
+
+- Définir les ojectifs de l'atelier
+- Définir le scénario de l'atelier
+- Découper le scénario en étapes
+- Coder les différentes étapes
+- Créer un repository git avec une branche par étape
+- Faire des slides pour présenter le Contract testing et l'atelier
+ 
