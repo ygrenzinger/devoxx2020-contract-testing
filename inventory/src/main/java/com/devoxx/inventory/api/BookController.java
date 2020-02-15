@@ -6,6 +6,9 @@ import com.devoxx.inventory.domain.BookInventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+import java.util.Optional;
+
 @RestController
 public class BookController {
 
@@ -19,8 +22,8 @@ public class BookController {
     }
 
     @GetMapping("/v1/books")
-    public Iterable<Book> books() {
-        return bookInventory.allBooks();
+    public Iterable<Book> books(@RequestParam(value = "only-has-stock", required = false) Optional<Boolean> onlyHasStock) {
+        return bookInventory.allBooks(onlyHasStock.orElse(false));
     }
 
     @GetMapping("/v1/books/{id}")
@@ -35,12 +38,12 @@ public class BookController {
         return book;
     }
 
-    @PostMapping("/v1/books/{id}/reduce-stock/{number}")
+    @PostMapping("/v1/books/{id}/stock/reduce/{number}")
     public Book reduceStock(@PathVariable String id, @PathVariable Integer number) {
         return bookInventory.reduceStock(id, number);
     }
 
-    @PostMapping("/v1/books/{id}/increase-stock/{number}")
+    @PostMapping("/v1/books/{id}/stock/increase/{number}")
     public Book increaseStock(@PathVariable String id, @PathVariable Integer number) {
         return bookInventory.increaseStock(id, number);
     }

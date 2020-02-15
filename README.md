@@ -18,3 +18,19 @@ Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Sp
 - Créer un repository git avec une branche par étape
 - Faire des slides pour présenter le Contract testing et l'atelier
  
+
+ ## Lab
+
+ Contract DSL
+ https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl
+
+ - Add maven plugin  
+ - Add first contract like GET /v1/books
+ - Add base contract class to make the tests pass
+ - run _spring-cloud-contract:generateTests_ and look at _target/generated-test-sources_/.../ContractVerifierTest.java
+ - You can run them directly as a typical java test class
+ - Adding [static contract with groovy DSL](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl)
+ - You can test only the relevant fields
+ - Using [dynamic and regex properties](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-dynamic-properties)
+ - understand the _$(consumer/stub/client(...), producer/test/server(...))_
+ - You can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)

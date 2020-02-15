@@ -8,8 +8,8 @@ Contract.make {
         url '/v1/books'
         body("""
         {
-            "name": "Kotlin",
-            "price": "120"
+            "name": "Scala",
+            "price": "28.7"
         }
         """)
         headers {
@@ -18,14 +18,15 @@ Contract.make {
     }
     response {
         status OK()
-        body("""
-        {
-            "id": "dc8493d6-e2e3-47da-a806-d1e8ff7cd4df",
-            "name": "Kotlin",
-            "price": "120",
-            "stock": 0
-        }
-        """)
+        body(
+                id: value(
+                        consumer(anyUuid()),
+                        producer(regex('[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'))
+                ),
+                name: "Scala",
+                price: $(anyDouble()),
+                stock: 0
+        )
         headers {
             contentType(applicationJson())
         }

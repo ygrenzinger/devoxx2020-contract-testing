@@ -4,11 +4,10 @@ import com.devoxx.inventory.domain.Book;
 import com.devoxx.inventory.domain.BookInventory;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.IntFunction;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryBookInventory implements BookInventory {
@@ -16,8 +15,10 @@ public class InMemoryBookInventory implements BookInventory {
     private final Map<String, Book> inventory = new HashMap<>();
 
     @Override
-    public Iterable<Book> allBooks() {
-        return inventory.values();
+    public Iterable<Book> allBooks(boolean onlyHasStock) {
+        return inventory.values().stream()
+                .filter(book -> !(onlyHasStock && book.getStock() == 0))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -42,7 +43,7 @@ public class InMemoryBookInventory implements BookInventory {
 
     @Override
     public Book increaseStock(String bookId, Integer number) {
-        return changeStock(bookId, stock -> stock - number);
+        return changeStock(bookId, stock -> stock + number);
     }
 
     private Book changeStock(String bookId, IntFunction<Integer> fn) {

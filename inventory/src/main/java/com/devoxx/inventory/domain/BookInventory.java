@@ -1,7 +1,7 @@
 package com.devoxx.inventory.domain;
 
 public interface BookInventory {
-    Iterable<Book> allBooks();
+    Iterable<Book> allBooks(boolean onlyHasStock);
 
     Book findBook(String bookId);
 
