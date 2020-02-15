@@ -28,19 +28,19 @@ public class BookController {
         return bookInventory.findBook(id);
     }
 
-    @PostMapping("/v1/book")
+    @PostMapping("/v1/books")
     public Book create(@RequestBody Book book) {
         book.setId(bookIdGenerator.randomId());
         bookInventory.insertBook(book);
         return book;
     }
 
-    @PostMapping("/{id}/reduce-stock/{number}")
+    @PostMapping("/v1/books/{id}/reduce-stock/{number}")
     public Book reduceStock(@PathVariable String id, @PathVariable Integer number) {
         return bookInventory.reduceStock(id, number);
     }
 
-    @PostMapping("/{id}/increase-stock/{number}")
+    @PostMapping("/v1/books/{id}/increase-stock/{number}")
     public Book increaseStock(@PathVariable String id, @PathVariable Integer number) {
         return bookInventory.increaseStock(id, number);
     }
