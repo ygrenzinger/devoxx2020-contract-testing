@@ -34,3 +34,8 @@ Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Sp
  - Using [dynamic and regex properties](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-dynamic-properties)
  - understand the _$(consumer/stub/client(...), producer/test/server(...))_
  - You can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)
+
+ - mvn install  for making stub accessible for consumers
+ - using Contract WireMock stub on the consumer "Checkout" side
+ - fixing missing config to make WireMock request pass
+ - Adding contracts
