@@ -3,6 +3,7 @@ package com.devoxx.checkout.domain;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class Cashier {
@@ -15,7 +16,7 @@ public class Cashier {
     }
 
     public Order checkoutNow(Order order) {
-        order.setDate(LocalDateTime.now());
+        order.setCreatedAt(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
         checkStock(order);
         delivery.send(order);
         return order;

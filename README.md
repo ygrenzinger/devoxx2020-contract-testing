@@ -36,6 +36,9 @@ Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Sp
  - You can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)
 
  - mvn install  for making stub accessible for consumers
- - using Contract WireMock stub on the consumer "Checkout" side
- - fixing missing config to make WireMock request pass
- - Adding contracts
+ - using Contract WireMock stub on the consumer "Checkout" side [see AutoConfigureStubRunner](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-retrieving)
+ - fixing missing config to make WireMock request pass with stub runner 
+ - Add a contract (and baseclass) for /v1/checkouts
+ - Adding a contract for a message which is created in method [see Output Triggered by a Method](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-output-triggered-method)
+
+ 

@@ -15,5 +15,5 @@ public class Order {
     private String bookId;
     private int number;
     private String clientId;
-    private LocalDateTime date;
+    private LocalDateTime createdAt;
 }

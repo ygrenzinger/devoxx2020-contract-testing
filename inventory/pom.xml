@@ -72,7 +72,6 @@
                 <configuration>
                     <testFramework>JUNIT5</testFramework>
                     <baseClassForTests>com.devoxx.inventory.contracts.ContractsBase</baseClassForTests>
-                    <convertToYaml>true</convertToYaml>
                 </configuration>
 			</plugin>
 			<plugin>

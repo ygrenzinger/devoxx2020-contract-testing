@@ -15,13 +15,13 @@ import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
 import org.springframework.cloud.stream.test.binder.MessageCollector;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.Message;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -63,7 +63,7 @@ public class CheckoutApplicationTests {
         //then
         Message<String> received = (Message<String>) messageCollector.forChannel(streams.orders()).poll();
         Order payload = objectMapper.readValue(Objects.requireNonNull(received).getPayload(), Order.class);
-        assertThat(payload).isEqualToIgnoringGivenFields(order, "date");
+        assertThat(payload).isEqualToIgnoringGivenFields(order, "createdAt");
     }
 
     @Test
