@@ -42,3 +42,7 @@ Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Sp
  - Adding a contract for a message which is created in method [see Output Triggered by a Method](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-output-triggered-method)
 
  
+ - mvn install  for making stub accessible for consumer
+ - Complete test in delivery service to [trigger stub message](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-messaging-consumer)
+
+ 
