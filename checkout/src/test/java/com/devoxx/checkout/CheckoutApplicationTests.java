@@ -29,7 +29,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureStubRunner(
         ids = {"com.devoxx:inventory:+:stubs:8080"},
-        stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+        stubsMode = StubRunnerProperties.StubsMode.REMOTE,
+        repositoryRoot = "git://file:///Users/ygrenzinger/git/devoxx-contracts.git"
+)
 @AutoConfigureMockMvc
 public class CheckoutApplicationTests {
 

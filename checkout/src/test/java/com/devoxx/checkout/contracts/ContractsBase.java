@@ -1,13 +1,8 @@
 package com.devoxx.checkout.contracts;
 
-import com.devoxx.checkout.api.CheckoutController;
 import com.devoxx.checkout.domain.Cashier;
 import com.devoxx.checkout.domain.Delivery;
 import com.devoxx.checkout.domain.Order;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import io.restassured.config.ObjectMapperConfig;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,11 +13,8 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.cloud.contract.verifier.messaging.MessageVerifier;
 import org.springframework.cloud.contract.verifier.messaging.boot.AutoConfigureMessageVerifier;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDateTime;
@@ -32,8 +24,10 @@ import java.time.temporal.ChronoUnit;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureStubRunner(
-        ids = {"com.parisjug:inventory:+:stubs:8080"},
-        stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+        ids = {"com.devoxx:inventory:+:stubs:8080"},
+        stubsMode = StubRunnerProperties.StubsMode.REMOTE,
+        repositoryRoot = "git://file:///Users/ygrenzinger/git/devoxx-contracts.git"
+)
 @AutoConfigureMessageVerifier
 @DirtiesContext
 public class ContractsBase {

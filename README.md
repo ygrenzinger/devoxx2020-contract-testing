@@ -21,8 +21,13 @@ Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Sp
 
  ## Lab
 
- Contract DSL
- https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl
+Discover Contract DSL
+https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/getting-started.html#getting-started-introducing-spring-cloud-contract
+
+https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/complex.html
+
+
+
 
  - Add maven plugin  
  - Add first contract like GET /v1/books
@@ -38,11 +43,38 @@ Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Sp
  - mvn install  for making stub accessible for consumers
  - using Contract WireMock stub on the consumer "Checkout" side [see AutoConfigureStubRunner](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-retrieving)
  - fixing missing config to make WireMock request pass with stub runner 
+ - Add configuration in yml for stub runner to avoid duplication
  - Add a contract (and baseclass) for /v1/checkouts
  - Adding a contract for a message which is created in method [see Output Triggered by a Method](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-output-triggered-method)
 
  
  - mvn install  for making stub accessible for consumer
  - Complete test in delivery service to [trigger stub message](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-messaging-consumer)
+
+
+## Part 2
+
+Init a local distant repo:
+- git init --bare test-repo.git
+- git clone test-repo.git/ test-clone
+- touch README.md
+- git add .
+- git commit -m "add README"
+- git push origin master
+
+Run the spring-cloud-contract convert and generateStubs then
+Add maven configuration to push to repo
+                <configuration>
+                    <contractsMode>REMOTE</contractsMode>
+                    <contractsRepositoryUrl>
+                        git://file:///Users/ygrenzinger/git/devoxx-contracts
+                    </contractsRepositoryUrl>
+                    ...
+                </configuration>
+Run the spring-cloud-contract:pushStubsToScm in maven inside the inventory project
+Use stubs mode remote and add repository root
+
+
+
 
  
