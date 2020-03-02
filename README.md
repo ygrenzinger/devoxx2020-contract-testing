@@ -29,16 +29,18 @@ In inventory project:
 - _info_ : For very complex use case, you can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)
 - Uncomment the test `shoudCreateBookIntoInventory` and make it test the create POST endpoint. The problem here is the random UUID. You can either control the UUID generator in the test or use matchers.
 - Create the contract `shoudReduceStockInInventory` and make it test the reduce stock POST endpoint. You also have to uncomment it to show some ATDD practices :)
+- You can run and tests your stub by using `generateStubs` goal
 - Do mvn install on inventory project for making stub accessible for consumers
 
 
 In checkout project:
- - using Contract WireMock stub on the consumer "Checkout" side [see AutoConfigureStubRunner](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-retrieving)
- - fixing missing config to make WireMock request pass with stub runner 
- - Add configuration in yml for stub runner to avoid duplication
- - Add a contract (and baseclass) for /v1/checkouts
- - Adding a contract for a message which is created in method [see Output Triggered by a Method](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-output-triggered-method)
- - mvn install  for making stub accessible for consumer
+- add [AutoConfigureStubRunner annotation](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-retrieving) with ids of the producer you consume (here inventory). `ids` looks like this : `groupId:artefactId:+:stubs:portNumber`. You need to also configure `stubsMode = StubRunnerProperties.StubsMode.LOCAL`
+- fixing config to make WireMock request pass with stub runner by uncommenting the restTemplate configuration lines for Accept and Content-Type in `CheckoutApplication.java`
+- remove the @Disabled on test `should_checkout_order`
+- Complete contract for controller endpoint. Don't forget to add the baseClass. You can use the WireMock stub from inventory.
+- Adding a contract for a message which is created in method [see Output Triggered by a Method](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-output-triggered-method)
+- _bonus_ : Add configuration in yml for stub runner to avoid duplication
+- mvn install  for making stub accessible for consumer
 
 
 In delivery project:

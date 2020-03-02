@@ -62,7 +62,10 @@ public class CheckoutApplicationTests {
         //then
         Message<String> received = (Message<String>) messageCollector.forChannel(streams.orders()).poll();
         Order payload = objectMapper.readValue(Objects.requireNonNull(received).getPayload(), Order.class);
-        assertThat(payload).isEqualToIgnoringGivenFields(order, "createdAt");
+        assertThat(payload.getBookId()).isEqualTo("d4d37e73-77a0-4616-8bd2-5ed983d45d14");
+        assertThat(payload.getNumber()).isEqualTo(2);
+        assertThat(payload.getClientId()).isEqualTo("yannick");
+        assertThat(payload.getCreatedAt()).isNotNull();
     }
 
     @Test
