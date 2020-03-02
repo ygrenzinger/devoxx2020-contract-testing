@@ -17,9 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureStubRunner(
-        ids = {"com.devoxx:checdkout"},
+        ids = {"com.devoxx:checkout"},
         stubsMode = StubRunnerProperties.StubsMode.REMOTE,
-        repositoryRoot = "git://file:///Users/ygrenzinger/git/devoxx-contracts.git"
+        repositoryRoot = "git://file:///Users/ygrenzinger/git/contract.git"
 )
 class DeliveryApplicationTests {
 

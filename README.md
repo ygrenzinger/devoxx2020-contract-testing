@@ -30,7 +30,7 @@ https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin
 
 
  - Add maven plugin  
- - Add first contract like GET /v1/books
+ - Make first contract like GET /v1/books pass
  - Add base contract class to make the tests pass
  - run _spring-cloud-contract:generateTests_ and look at _target/generated-test-sources_/.../ContractVerifierTest.java
  - You can run them directly as a typical java test class
@@ -64,17 +64,39 @@ Init a local distant repo:
 
 Run the spring-cloud-contract convert and generateStubs then
 Add maven configuration to push to repo
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <version>2.2.1.RELEASE</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <!-- By default we will not push the stubs back to SCM,
+                            you have to explicitly add it as a goal -->
+                            <goal>pushStubsToScm</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <contractsMode>REMOTE</contractsMode>
-                    <contractsRepositoryUrl>
-                        git://file:///Users/ygrenzinger/git/devoxx-contracts
-                    </contractsRepositoryUrl>
-                    ...
+                    <contractsMode>LOCAL</contractsMode>
+                    <contractsRepositoryUrl>git://file:///Users/ygrenzinger/git/contract.git</contractsRepositoryUrl>
+                    <contractDependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>${project.artifactId}</artifactId>
+                        <version>${project.version}</version>
+                    </contractDependency>
+                    <testFramework>JUNIT5</testFramework>
+                    <baseClassForTests>com.devoxx.checkout.contracts.ContractsBase</baseClassForTests>
                 </configuration>
+            </plugin>
 Run the spring-cloud-contract:pushStubsToScm in maven inside the inventory project
 Use stubs mode remote and add repository root
 
 
+https://github.com/spring-cloud-samples/spring-cloud-contract-samples/blob/master/producer_with_git/pom.xml#L98
+https://cloud-samples.spring.io/spring-cloud-contract-samples/workshops.html#_setup
 
 
  
