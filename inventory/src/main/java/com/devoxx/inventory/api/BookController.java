@@ -22,7 +22,7 @@ public class BookController {
     }
 
     @GetMapping("/v1/books")
-    public Iterable<Book> books(@RequestParam(value = "only-has-stock", required = false) Optional<Boolean> onlyHasStock) {
+    public Iterable<Book> books(@RequestParam(value = "ony-has-stock", required = false) Optional<Boolean> onlyHasStock) {
         return bookInventory.allBooks(onlyHasStock.orElse(false));
     }
 

@@ -9,31 +9,24 @@ Dans cet atelier, nous présenterons comment mettre en place le test de contrat,
 
 Nous utiliserons Spring Cloud Contract, très bien intégré aux applications Spring Boot, ainsi que Pact ayant l’avantage d’être polyglotte. 
 
-## Todo
-
-- Définir les ojectifs de l'atelier
-- Définir le scénario de l'atelier
-- Découper le scénario en étapes
-- Coder les différentes étapes
-- Créer un repository git avec une branche par étape
-- Faire des slides pour présenter le Contract testing et l'atelier
- 
 
  ## Lab
 
-Discover Contract DSL
-https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/getting-started.html#getting-started-introducing-spring-cloud-contract
+You can read a bit the [introduction to Spring Cloud Contract](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/getting-started.html#getting-started-introducing-spring-cloud-contract
+)
 
-https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/complex.html
+In inventory project:
+ - The maven plugin [doc here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/) is already added in POM.xml spring-cloud-contract-maven-plugin
+ - You have to configure the location base contract class available here `com.devoxx.inventory.contracts.ContractsBase` in the maven plugin by adding the location of in configuration `<baseClassForTests>` (see here)[https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/junit.html]. This base class create configure ...
+ - run `mvn clean test` to see the plugin generate tests in this class `_target/generated-test-sources_/.../ContractVerifierTest.java`. You can run it as a typical java test class.
+- the test `shoudRetrieveAllBooksWithStock` fails due to wrong url in the code. You can easily correct it.
+- Add contracts for other REST endpoints
 
 
-
-
- - Add maven plugin  
- - Make first contract like GET /v1/books pass
- - Add base contract class to make the tests pass
- - run _spring-cloud-contract:generateTests_ and look at _target/generated-test-sources_/.../ContractVerifierTest.java
- - You can run them directly as a typical java test class
+ - Make first contract `shoudRetrieveAllBooks` pass
+ - Add  to make the tests pass
+ - run _spring-cloud-contract:generateTests_ and look at 
+ - You can run them directly 
  - Adding [static contract with groovy DSL](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl)
  - You can test only the relevant fields
  - Using [dynamic and regex properties](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-dynamic-properties)

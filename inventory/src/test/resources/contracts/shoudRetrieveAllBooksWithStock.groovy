@@ -5,7 +5,7 @@ import org.springframework.cloud.contract.spec.Contract
 Contract.make {
     request {
         method 'GET'
-        url ''
+        url '/v1/books?only-has-stock=true'
         headers {
             contentType(applicationJson())
         }
