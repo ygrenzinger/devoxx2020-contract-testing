@@ -28,7 +28,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chromium'],
-    singleRun: true,
+    singleRun: false,
     restartOnFileChange: true,
     pact: [
       {

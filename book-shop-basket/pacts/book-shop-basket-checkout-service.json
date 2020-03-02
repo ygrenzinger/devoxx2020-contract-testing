@@ -11,6 +11,9 @@
       "request": {
         "method": "POST",
         "path": "/v1/checkouts",
+        "headers": {
+          "Content-Type": "application/json"
+        },
         "body": {
           "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
           "number": 5,

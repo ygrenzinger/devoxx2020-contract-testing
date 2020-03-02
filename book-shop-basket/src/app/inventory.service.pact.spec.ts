@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { InventoryService } from "./inventory.service";
 import { Book } from './typings';
 
-describe('InventoryService', () => {
+describe('InventoryServiceContract', () => {
   let provider;
 
   // Setup Pact mock server for this service
@@ -17,7 +17,7 @@ describe('InventoryService', () => {
     });
 
     // required for slower CI environments
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // Required if run with `singleRun: false`
     await provider.removeInteractions();
@@ -48,32 +48,36 @@ describe('InventoryService', () => {
     }
   ];
 
-  beforeAll((done) => {
-    provider.addInteraction({
-      state: ``,
-      uponReceiving: 'Get books inventory',
-      withRequest: {
-        method: 'GET',
-        path: '/v1/books'
-      },
-      willRespondWith: {
-        status: 200,
-        body: Matchers.somethingLike(books),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    }).then(done, error => done.fail(error));
-  });
+  describe('InventoryService', () => {
 
-  it('should get book inventory', (done) => {
-    const inventoryService: InventoryService = TestBed.get(InventoryService);
-    inventoryService.allBooks().subscribe(response => {
-      expect(response).toEqual(books);
-      done();
-    }, error => {
-      done.fail(error);
+    beforeAll((done) => {
+      provider.addInteraction({
+        state: ``,
+        uponReceiving: 'Get books inventory',
+        withRequest: {
+          method: 'GET',
+          path: '/v1/books'
+        },
+        willRespondWith: {
+          status: 200,
+          body: Matchers.somethingLike(books),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      }).then(done, error => done.fail(error));
     });
+
+    it('should get book inventory', (done) => {
+      const inventoryService: InventoryService = TestBed.get(InventoryService);
+      inventoryService.allBooks().subscribe(response => {
+        expect(response).toEqual(books);
+        done();
+      }, error => {
+        done.fail(error);
+      });
+    });
+
   });
 
 });

@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { CheckoutService } from './checkout.service';
 import { Order } from './typings';
 
-describe('CheckoutService', () => {
+describe('CheckoutServiceContract', () => {
   let provider;
 
   // Setup Pact mock server for this service
@@ -17,7 +17,7 @@ describe('CheckoutService', () => {
     });
 
     // required for slower CI environments
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // Required if run with `singleRun: false`
     await provider.removeInteractions();
@@ -46,33 +46,40 @@ describe('CheckoutService', () => {
     clientId: '0fcfd742-0f59-4843-90b1-66504ed10468'
   };
 
-  beforeAll((done) => {
-    provider.addInteraction({
-      state: ``,
-      uponReceiving: 'Checkout an order',
-      withRequest: {
-        method: 'POST',
-        path: '/v1/checkouts',
-        body: order
-      },
-      willRespondWith: {
-        status: 200,
-        body: Matchers.somethingLike(order),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    }).then(done, error => done.fail(error));
-  });
+  describe('CheckoutService', () => {
 
-  it('should checkout', (done) => {
-    const checkoutService: CheckoutService = TestBed.get(CheckoutService);
-    checkoutService.checkout(order).subscribe(response => {
-      expect(response).toEqual(order);
-      done();
-    }, error => {
-      done.fail(error);
+    beforeAll((done) => {
+      provider.addInteraction({
+        state: ``,
+        uponReceiving: 'Checkout an order',
+        withRequest: {
+          method: 'POST',
+          path: '/v1/checkouts',
+          body: order,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        },
+        willRespondWith: {
+          status: 200,
+          body: Matchers.somethingLike(order),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      }).then(done, error => done.fail(error));
     });
+
+    it('should checkout', (done) => {
+      const checkoutService: CheckoutService = TestBed.get(CheckoutService);
+      checkoutService.checkout(order).subscribe(response => {
+        expect(response).toEqual(order);
+        done();
+      }, error => {
+        done.fail(error);
+      });
+    });
+
   });
 
 });
