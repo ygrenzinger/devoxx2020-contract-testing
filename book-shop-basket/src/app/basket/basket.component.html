@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-header">
+        <h1>My Basket</h1>
+    </div>
+
+    <div class="card-body">
+        <div *ngIf="books">
+            <h3>Books</h3>
+            <table class="table table-striped">
+                <tbody>
+                    <tr *ngFor="let book of books">
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.price }} €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
