@@ -69,26 +69,9 @@
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<version>2.2.1.RELEASE</version>
 				<extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <!-- By default we will not push the stubs back to SCM,
-                            you have to explicitly add it as a goal -->
-                            <goal>pushStubsToScm</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
-                    <contractsMode>LOCAL</contractsMode>
-                    <contractsRepositoryUrl>git://file:///Users/ygrenzinger/git/contract.git</contractsRepositoryUrl>
-                    <contractDependency>
-                        <groupId>${project.groupId}</groupId>
-                        <artifactId>${project.artifactId}</artifactId>
-                        <version>${project.version}</version>
-                    </contractDependency>
+                    <!-- TO COMPLETE -->
                     <testFramework>JUNIT5</testFramework>
-                    <baseClassForTests>com.devoxx.inventory.contracts.ContractsBase</baseClassForTests>
                 </configuration>
 			</plugin>
 			<plugin>

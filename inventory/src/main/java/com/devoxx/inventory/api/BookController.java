@@ -38,15 +38,9 @@ public class BookController {
         return book;
     }
 
-    @PostMapping("/v1/books/{id}/stock/reduce/{number}")
-    public Book reduceStock(@PathVariable String id, @PathVariable Integer number) {
-        return bookInventory.reduceStock(id, number);
-    }
-
-    @PostMapping("/v1/books/{id}/stock/increase/{number}")
-    public Book increaseStock(@PathVariable String id, @PathVariable Integer number) {
-        return bookInventory.increaseStock(id, number);
-    }
-
+//    @PostMapping("/v1/books/{id}/stock/reduce/{number}")
+//    public Book reduceStock(@PathVariable String id, @PathVariable Integer number) {
+//        return bookInventory.reduceStock(id, number);
+//    }
 
 }

@@ -16,18 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@AutoConfigureStubRunner(
-        ids = {"com.devoxx:checkout"},
-        stubsMode = StubRunnerProperties.StubsMode.REMOTE,
-        repositoryRoot = "git://file:///Users/ygrenzinger/git/contract.git"
-)
 class DeliveryApplicationTests {
 
     @Autowired
     private DeliveryQueue deliveryQueue;
-
-    @Autowired
-    StubTrigger stubTrigger;
 
     @BeforeEach
     void before() {
@@ -36,7 +28,7 @@ class DeliveryApplicationTests {
 
     @Test
     void should_correctly_process_order() {
-        stubTrigger.trigger("should send order");
+        // use stub to trigger message
         Order order = new Order("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 2, "yannick");
         assertThat(deliveryQueue.ordersInProcess()).containsExactly(order);
     }

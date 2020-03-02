@@ -106,15 +106,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <contractsMode>LOCAL</contractsMode>
-                    <contractsRepositoryUrl>git://file:///Users/ygrenzinger/git/contract.git</contractsRepositoryUrl>
-                    <contractDependency>
-                        <groupId>${project.groupId}</groupId>
-                        <artifactId>${project.artifactId}</artifactId>
-                        <version>${project.version}</version>
-                    </contractDependency>
                     <testFramework>JUNIT5</testFramework>
-                    <baseClassForTests>com.devoxx.checkout.contracts.ContractsBase</baseClassForTests>
+                    <!-- TO COMPLETE -->
                 </configuration>
             </plugin>
 			<plugin>

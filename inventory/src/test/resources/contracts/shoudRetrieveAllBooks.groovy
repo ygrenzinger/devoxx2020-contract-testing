@@ -4,7 +4,7 @@ import org.springframework.cloud.contract.spec.Contract
 
 Contract.make {
     request {
-        method 'GET'
+        method GET()
         url '/v1/books'
         headers {
             contentType(applicationJson())
