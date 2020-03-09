@@ -2,7 +2,7 @@ package com.devoxx.checkout.provider;
 
 
 import com.devoxx.checkout.domain.Delivery;
-import com.devoxx.checkout.domain.Order;
+import com.devoxx.checkout.domain.ValidatedOrder;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
@@ -17,8 +17,8 @@ public class DeliveryMessaging implements Delivery {
     }
 
     @Override
-    public void send(Order order) {
-        Message<Order> message = MessageBuilder
+    public void send(ValidatedOrder order) {
+        Message<ValidatedOrder> message = MessageBuilder
                 .withPayload(order)
                 .setHeader("SENDER", "checkout")
                 .build();

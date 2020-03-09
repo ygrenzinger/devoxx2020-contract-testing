@@ -15,18 +15,18 @@ public class Cashier {
         this.delivery = delivery;
     }
 
-    public Order checkoutNow(Order order) {
-        order.setCreatedAt(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
-        checkStock(order);
-        delivery.send(order);
-        return order;
+    public ValidatedOrder checkoutNow(Order order) {
+        ValidatedOrder validatedOrder = checkStock(order);
+        delivery.send(validatedOrder);
+        return validatedOrder;
     }
 
-    private void checkStock(Order order) {
+    private ValidatedOrder checkStock(Order order) {
         int remainingStock = this.inventory
                 .retrieveBook(order.getBookId()).getStock();
-        if (remainingStock < order.getNumber()) {
+        if (remainingStock < order.getQuantity()) {
             throw new NoMoreStockException();
         }
+        return ValidatedOrder.from(order, LocalDateTime.now());
     }
 }

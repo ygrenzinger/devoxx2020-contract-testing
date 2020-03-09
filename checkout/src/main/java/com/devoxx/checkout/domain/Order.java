@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Builder
 public class Order {
     private String bookId;
-    private int number;
+    private int quantity;
     private String clientId;
-    private LocalDateTime createdAt;
 }

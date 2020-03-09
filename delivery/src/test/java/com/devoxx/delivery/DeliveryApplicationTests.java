@@ -16,7 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@AutoConfigureStubRunner(
+        ids = {"com.devoxx:checkout"},
+        stubsMode = StubRunnerProperties.StubsMode.LOCAL
+)
 class DeliveryApplicationTests {
+
+//    @Autowired
+//    StubTrigger stubTrigger;
 
     @Autowired
     private DeliveryQueue deliveryQueue;
