@@ -65,7 +65,7 @@ In delivery project:
 
 ### Part 2
 
-Init a local distant repo:
+Init a local "distant" Git repository:
 - git init --bare test-repo.git
 - git clone test-repo.git/ test-clone
 - touch README.md
