@@ -1,0 +1,700 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>N’ayez plus peur de refactorer vos API WEB</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/beige.css ">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Ne cassez plus vos consommateurs</h3>
+					<img src="images/refactor-meme.jpg"
+						 alt="Refactor or don't that is the question" />
+					<h3>grâce au contract testing</h3>
+					<aside class="notes">
+						Yannick commence
+					</aside>
+				</section>
+				<section>
+					<table>
+						<tr>
+							<td style="text-align: center;"><h3>Maxime</h3></td>
+							<td style="text-align: center;"><h3>&</h3></td>
+							<td style="text-align: center;"><h3>Yannick</h3></td>
+						</tr>
+						<tr>
+							<td><img src="images/novencia.jpg" height="60px"/></td>
+							<td></td>
+							<td><img src="images/benext.png" height="60px"/></td>
+						</tr>
+						<tr>
+							<td><a href="https://twitter.com/maxime_gelle">@maxime_gelle</a></td>
+							<td></td>
+							<td><a href="https://twitter.com/ygrenzinger">@ygrenzinger</a></td>
+						</tr>
+					</table>
+					<aside class="notes">
+						Maxime et Yannick
+					</aside>
+				</section>
+
+				<section>
+					<section> 
+						<h2>#micro-services !!!</h2>
+						<img src="images/thumb-up.gif" alt="Thumb up" />
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+					<section>
+						<h3>Notre architecture</h3>
+						<img src="images/microservices-architecture.png"
+							 alt="Notre super architcture, bon c'est un peu compliqué"
+							 height="500px"/>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Contract Testing !</h2>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+					<section>
+						<h3>Tester les interactions</h3>
+						<img src="images/contract-testing-principle.png" height="400px"
+								alt="both consumer and provider should verify the contract" />
+						<aside class="notes">
+							Maxime
+							<br/>
+							Tester les interactions entre consumer et provider
+						</aside>
+					</section>
+					<section>
+						<h3>Provider / Producer</h3>
+						<blockquote>Celui qui propose l'API</blockquote>
+						<p>Exemple: Mon service REST</p>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+					<section>
+						<h3>Consumer</h3>
+						<blockquote>Celui qui appelle l'API</blockquote>
+						<p>Exemple: Mes clients Angular</p>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+					<section>
+						<h2>On définit un contrat</h2>
+						<img src="images/a-contract-and-interactions.png" alt="Un contract"
+							 height="400px"/>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+					<section>
+						<h2>Et des interactions</h2>
+						<img src="images/interaction.png" alt="Une interaction"
+							 height="400px"/>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+
+					<section>
+						<h3>Comment ?</h3>
+						<img src="images/contract-testing-mocks.png"
+								alt="Un contract, tester avec des mocks"
+								height="500px"/>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-2.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-3.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-4.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-5.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-6.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-7.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-8.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#cef28f">
+						<h4>Test d'un consumer</h4>
+						<img src="images/full-test-9.png" height="300px"/>
+						<aside class="notes">Maxime<br/>Maxime enchaine</aside>
+					</section>
+
+
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-10.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-11.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-12.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-13.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-14.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-15.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-16.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-transition="none" data-background="#b5d0ff">
+						<h4>Test d'un provider</h4>
+						<img src="images/full-test-17.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+
+					<section data-transition="slide" >
+						<h2>Au global</h2>
+						<img src="images/both-tests.png" alt="Global view" height="250px">
+						<aside class="notes">Maxime</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>L'atelier</h2>
+					</section>
+					<section>
+						<h3>Somaire</h3>
+						<ul>
+							<li>Première partie : "Provider driven" avec Spring Cloud Contract</li>
+							<li>Deuxième partie : "Consumer driven" avec repo de contracts + pact</li>
+						</ul>
+					</section>
+					<section>
+						<h3>L'architecture de la plateforme</h3>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Spring Cloud Contract</h2>
+						<img src="images/spring-cloud-logo.png" height="200px"
+								alt="Spring Cloud Contract architcture" />
+						<p>Marcin Grzejszczak <a href="https://twitter.com/MGrzejszczak">@MGrzejszczak</a> </p>
+						<aside class="notes">
+							Yannick
+						</aside>
+					</section>
+					<section>
+						<ul>
+							<li>To avoid breaking change and mitigate version hell.</li>
+							<li>To generate boilerplate test code to be used on the server side.</li>
+							<li>To promote ATDD method in (micro)services architecture style.</li>
+							<li>To ensure that stubs simulate correctly the producer side.</li>
+							<li>To provide a way to publish changes in contracts that are immediately visible on both sides.</li>
+						</ul>
+					</section>
+					<section>
+						<img src="images/spring-cloud-contract.png" height="600px"
+								alt="Spring Cloud Contract architcture" />
+						<aside class="notes">
+							Yannick
+						</aside>
+					</section>
+					<section>
+						<h3>Contract DSL</h3>
+						<blockquote>Groovy mais aussi YML / Java / Kotlin</blockquote>
+						<p>Contrat qui suit retrieveAllBooks</p>
+						<aside class="notes">
+							Yannick
+						</aside>
+					</section>
+
+                    <section data-background="#cef28f">
+                        <h3>Squelete du contrat</h3>
+						<pre><code class="hljs groovy">
+package contracts
+import org.springframework.cloud.contract.spec.Contract
+
+Contract.make {
+	request { ... }
+	response { ... }
+}
+							</code></pre>
+							<aside class="notes" >Yannick</aside>
+					</section>
+
+				<section data-background="#cef28f">
+					<h3>Définition de la requête</h3>
+					<pre><code class="hljs groovy">
+method 'GET'
+url '/v1/books'
+headers {
+	contentType(applicationJson())
+}
+						</code></pre>
+						<aside class="notes" >Yannick</aside>
+				</section>
+
+			<section data-background="#cef28f">
+				<h3>Définition de la réponse</h3>
+				<pre><code class="hljs groovy">status OK()
+body("""[{
+	"id": "d4d37e73-77a0-4616-8bd2-5ed983d45d14",
+	"name": "Java",
+	"price": "19.9",
+	"stock": 100
+},{
+	"id": "8364948b-6221-4cd8-9fd9-db0d17d45ef8",
+	"name": "Kotlin",
+	"price": "22.4",
+	"stock": 0
+}]""")
+headers { contentType(applicationJson()) }
+					</code></pre>
+					<aside class="notes" >Yannick</aside>
+			</section>
+		</section>
+
+				<section>
+					<section>
+						<h3>Qui définit le contrat ?</h3>
+						<h4>Consumer driven VS Provider driven</h4>
+						<aside class="notes">Maxime pose la question<br/>Maxime répond</aside>
+					</section>
+
+					<section>
+						<h3>Consumer Driven</h3>
+						<blockquote>J'ai besoin de ça</blockquote>
+						<img src="images/consumer-driven-contract.png"
+						     alt="Plusieurs contract pour un provider" />
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Quand faire du consumer driven ?</h3>
+                        <ul>
+							<li>Peu de consumers</li>
+							<li>Communication aisée</li>
+						</ul>
+						<blockquote>ex: Backend for Frontend</blockquote>
+						<aside class="notes">Maxime</aside>
+					</section>
+
+					<section>
+						<h3>Provider Driven</h3>
+						<blockquote>Je fonctionne de cette manière</blockquote>
+						<img src="images/provider-driven-contract.png"
+						     alt="Un contrat pour tous les consumers" />
+						<aside class="notes">Maxime</aside>
+ 					</section>
+					<section>
+						<h3>Quand faire du provider driven ?</h3>
+                        <ul>
+							<li>Consumers inconnus</li>
+							<li>Beaucoup de consumers</li>
+							<li>Communication difficile</li>
+						</ul>
+						<blockquote>ex: Api publique de Twitter</blockquote>
+						<aside class="notes">Maxime</aside>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h3>Où stocker les contrats ?</h3>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Partage des contrats</h3>
+						<ul>
+							<li>Github, bitbucket, ...</li>
+							<li>Nexus, Artifactory, ...</li>
+							<li>Contract repository</li>
+						</ul>
+						<aside class="notes">Maxime</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Quels outils ?</h3>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<table>
+							<tr>
+								<td style="text-align: center;">Spring cloud contract</td>
+								<td style="text-align: center;">Pact</td>
+							</tr>
+							<tr>
+								<td><img src="images/spring-cloud.jpg" alt="Spring cloud logo"/></td>
+								<td><img src="images/pact-logo.png" alt="Pact logo" ></td>
+							</tr>		
+						</table>
+						<aside class="notes">
+							Maxime<br/>
+							<br/>
+							Spring : provider puis consumer<br/>
+							Pact : provider<br/>
+							<br/>
+							Maxime enchaine
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<img src="images/pact-logo.png" alt="Pact logo" >
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Pourquoi ?</h3>
+						<ul>
+							<li>Consumer driven Contract Testing</li>
+							<li>Open source</li>
+							<li>Bien documenté</li>
+							<li>Communauté active</li>
+						</ul>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Polyglote</h3>
+						<img src="images/logo-techno/ruby.png" height="100px">
+						<img src="images/logo-techno/java.png" height="100px">
+						<img src="images/logo-techno/dotnet.png" height="100px">
+						<img src="images/logo-techno/go.png" height="100px">
+						<img src="images/logo-techno/javascript.png" height="100px">
+						<img src="images/logo-techno/swift.png" height="100px">
+						<img src="images/logo-techno/php.png" height="100px">
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Contract Repository : Pact Broker</h3>
+						<ul>
+							<li>Stocke les contrats</li>
+							<li>Cartographie les interactions</li>
+							<li>Liste les vérifications</li>
+						</ul>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Pact Broker</h3>
+						<img src="images/pact-broker-network-diagram.png" 
+							 height="500px"
+							 alt="interaction network"/>
+						<aside class="notes">Maxime<br/>
+							Maxime enchaine pour la démo</aside>
+					</section>
+				</section>
+				<section>
+
+					<section>
+						<h2>Démo</h2>
+						<aside class="notes" >Maxime</aside>
+					</section>
+
+					<section>
+						<h2>Notre cas</h2>
+						<img src="images/use-case.png" />
+						<aside class="notes" >Maxime</aside>
+					</section>
+
+					<section>
+						<h3>Search Consumer : Définition du contrat</h3>
+						<img src="images/contract.png" />
+						<aside class="notes" >Maxime</aside>
+					</section>
+
+                    <section data-background="#cef28f">
+                        <h3>Search Consumer : Définition du contrat</h3>
+                        <pre><code class="hljs java">@Pact(provider = "Catalog_Provider",consumer = "Search_Consumer")
+fun getAnExistingProduct(builder: PactDslWithProvider): RequestResponsePact {
+	return builder
+		.uponReceiving("Get a product")
+		.method("GET")
+		.path("/products/1")
+		.willRespondWith()
+		.status(HttpStatus.OK.value())
+		.body(PactDslJsonBody()
+			.numberType("id", 1)
+			.stringType("name", "Shoes")
+			.asBody())
+		.toPact()
+}</code></pre>
+							<aside class="notes" >Maxime</aside>
+					</section>
+					<section data-background="#cef28f">
+						<h3>Contrat généré</h3>
+						<pre><code class="hljs json">{
+    "provider": {
+        "name": "Catalog_Provider"
+    },
+    "consumer": {
+        "name": "Search_Consumer"
+    },
+    "interactions": [
+        {
+            "description": "Get a product",
+            "request": {
+                "method": "GET",
+                "path": "/products/1"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "id": 1,
+                    "name": "Shoes"
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.id": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pactSpecification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.24"
+        }
+    }
+}</code></pre>
+						<aside class="notes" >Maxime</aside>
+					</section>
+					<section data-background="#cef28f">
+							<h2>Consumer Test</h2>
+						<img src="images/full-test-9.png" height="300px"/>
+						<aside class="notes" >Maxime</aside>
+					</section>
+					<section data-background="#cef28f">
+						<h2>Consumer Test</h2>
+						<pre>
+							<code class="hljs java">@Test
+    fun shouldFindAProduct() {
+        val products = client.getProduct(1)
+        assertThat(products).isEqualTo(Product(1, "Shoes"))
+    }</code>
+						</pre>
+						<aside class="notes" >Maxime<br/>Maxime enchaine</aside>
+					</section>
+
+					<section data-background="#b5d0ff">
+							<h2>Provider Test: Catalog</h2>
+						<img src="images/full-test-17.png" height="300px"/>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section data-background="#b5d0ff">
+						<h2>Provider Test: Catalog</h2>
+						<pre><code>@SpringBootTest(/*Standard Spring Conf*/)
+@Provider("Catalog_Provider")
+@PactBroker(scheme = "https", host = "magelle.pact.dius.com.au", port="443",
+        authentication = PactBrokerAuth(scheme = "Bearer", username = "xxx"))
+class CatalogContractTest {
+
+    private val providerUrl = "http://localhost:8080"
+
+    @TestTemplate
+    @ExtendWith(PactVerificationInvocationContextProvider::class)
+    fun pactVerificationTestTemplate(context: PactVerificationContext) {
+        context.verifyInteraction()
+    }
+
+    @BeforeEach
+    @Throws(Exception::class)
+    fun before(context: PactVerificationContext) {
+        context.target = HttpTestTarget.fromUrl(URL(providerUrl))
+    }
+}</code></pre>
+						<aside class="notes">Maxime</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Des interactions maintenant</h3>
+							<p class="fragment"><i class="fa fa-check"></i> Déclarées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Centralisées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Visualisées</p>
+							<p class="fragment"><i class="fa fa-check"></i> Testées</p>
+						<aside class="notes">Maxime</aside>
+					</section>
+					<section>
+						<h3>Ce qui nous permet</h3>
+						<img src="images/micro-services-architecture-tested.png" alt="tout est testé" 
+							 height="500px"/>
+						<aside class="notes">Maxime<br/>Maxime enchaine</aside>
+					</section>
+					<section>
+						<h3>En plus</h3>
+						<img src="images/Pyramide-test.png" alt="On descend d'un cran dans la pyramide des tests" />
+						<aside class="notes">
+							Maxime <br/>
+							avant -> testé via e2e, test manuels, en prod<br/>
+							maintenant -> test intégration<br/>
+							+ rapide<br/>
+							+ fiable<br/>
+							- cher <br/>
+						</aside>
+					</section>
+					<section>
+						<h3>Attention</h3>
+							<p><i class="fa fa-ban"></i> Tests fonctionnels</p>
+							<p><i class="fa fa-ban"></i> Tests de charge</p>
+						</table>    
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+				</section>
+
+				<section>			
+
+					<section>
+						<h3>de Provider driven</h3>
+						<h3>à Consumer driven</h3>
+						<ul>
+							<li>Pact, polyglote</li>
+							<li>Plus précis</li>
+							<li><i class="fa fa-exclamation"></i> Plus lourd</li>
+						</ul>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+
+					<section>
+						<h3>Les bémols</h3>
+						<ul>
+							<li>Plus de contrats</li>
+							<li>Plus de charge</li>
+							<li>Complexité du versionning</li>
+						</ul>
+						<aside class="notes">
+							Maxime
+						</aside>
+					</section>
+				</section>
+				
+				<section>
+					<h2>Merci</h2>
+				</section>
+
+				<section>
+					<h2>Questions ?</h2>
+					<aside class="notes">
+						Maxime & Maxime
+					</aside>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
