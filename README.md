@@ -27,7 +27,7 @@ In inventory project:
 - _info_ : You can test only the relevant fields in the response.
 - _info_ : to directly generate the contract tests, use the `spring-cloud-contract:generateTests` goal of plugin directly to avoid running full maven build.
 - _info_ : For very complex use case, you can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)
-- Uncomment the test `shoudCreateBookIntoInventory` and make it test the create POST endpoint. The problem here is the random UUID. You can either control the UUID generator in the test or use matchers.
+- Uncomment the test `shoudCreateBookIntoInventory` and make it test the endpoint : create a new book. You need to tailor a specific example: the POST request with the JSON body (all except the ID) associated to the http status and JSON response. The problem here is  how to test the random UUID. You can either control the UUID generator in the test or use matchers.
 - Create the contract `shoudReduceStockInInventory` and make it test the reduce stock POST endpoint. You also have to uncomment it to show some ATDD practices :)
 - You can run and tests your stub by using `generateStubs` goal
 - Do mvn install on inventory project for making stub accessible for consumers

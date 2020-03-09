@@ -4,9 +4,12 @@ import com.devoxx.inventory.domain.Book;
 import com.devoxx.inventory.domain.BookIdGenerator;
 import com.devoxx.inventory.domain.BookInventory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.net.URI;
 import java.util.Optional;
 
 @RestController
@@ -32,10 +35,14 @@ public class BookController {
     }
 
     @PostMapping("/v1/books")
-    public Book create(@RequestBody Book book) {
+    public ResponseEntity<Book> create(@RequestBody Book book) {
+        if (StringUtils.isEmpty(book.getName())) {
+            return ResponseEntity.badRequest().body(book);
+        }
+
         book.setId(bookIdGenerator.randomId());
         bookInventory.insertBook(book);
-        return book;
+        return ResponseEntity.created(URI.create("/v1/books/"+book.getId())).body(book);
     }
 
 //    @PostMapping("/v1/books/{id}/stock/reduce/{number}")

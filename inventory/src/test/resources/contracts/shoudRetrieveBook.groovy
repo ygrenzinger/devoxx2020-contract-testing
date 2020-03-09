@@ -18,9 +18,9 @@ Contract.make {
         status OK()
         body(
                 "id": anyUuid(),
-                "name": anyNonEmptyString(),
-                "price": anyDouble(),
-                "stock": anyPositiveInt()
+                "name": "Java",
+                "price": "19.9",
+                "stock": 100
         )
         headers {
             contentType(applicationJson())

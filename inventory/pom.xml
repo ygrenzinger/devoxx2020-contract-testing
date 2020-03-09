@@ -70,7 +70,7 @@
 				<version>2.2.1.RELEASE</version>
 				<extensions>true</extensions>
                 <configuration>
-                    <!-- TO COMPLETE -->
+                    TO COMPLETE
                     <testFramework>JUNIT5</testFramework>
                 </configuration>
 			</plugin-->
