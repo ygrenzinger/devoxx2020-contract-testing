@@ -1,0 +1,11 @@
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/domain/Inventory.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/api/CheckoutController.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/domain/Book.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/provider/Streams.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/domain/Cashier.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/domain/Order.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/domain/Delivery.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/provider/DeliveryMessaging.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/provider/InventoryClient.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/CheckoutApplication.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/checkout/src/main/java/com/devoxx/checkout/domain/NoMoreStockException.java

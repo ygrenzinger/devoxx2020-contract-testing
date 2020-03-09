@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.devoxx.inventory.contracts.ContractVerifierTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.974 s - in com.devoxx.inventory.contracts.ContractVerifierTest

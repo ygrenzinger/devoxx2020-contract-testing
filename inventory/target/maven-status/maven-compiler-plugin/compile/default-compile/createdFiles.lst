@@ -1,0 +1,7 @@
+com/devoxx/inventory/infrastructure/InMemoryBookInventory.class
+com/devoxx/inventory/domain/BookInventory.class
+com/devoxx/inventory/InventoryApplication.class
+com/devoxx/inventory/domain/Book$BookBuilder.class
+com/devoxx/inventory/domain/Book.class
+com/devoxx/inventory/domain/BookIdGenerator.class
+com/devoxx/inventory/api/BookController.class

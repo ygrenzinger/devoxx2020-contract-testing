@@ -1,0 +1,12 @@
+com/devoxx/delivery/provider/InMemoryDeliveryQueue.class
+com/devoxx/delivery/provider/OrderMessageListener.class
+com/devoxx/delivery/domain/Book$BookBuilder.class
+com/devoxx/delivery/provider/Streams.class
+com/devoxx/delivery/domain/Book.class
+com/devoxx/delivery/domain/Inventory.class
+com/devoxx/delivery/domain/Order$OrderBuilder.class
+com/devoxx/delivery/domain/DeliveryQueue.class
+com/devoxx/delivery/provider/InventoryClient.class
+com/devoxx/delivery/domain/Order.class
+com/devoxx/delivery/domain/OrderProcessor.class
+com/devoxx/delivery/DeliveryApplication.class

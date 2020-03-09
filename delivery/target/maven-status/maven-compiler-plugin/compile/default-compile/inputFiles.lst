@@ -1,0 +1,10 @@
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/provider/OrderMessageListener.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/provider/InMemoryDeliveryQueue.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/domain/Order.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/provider/InventoryClient.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/DeliveryApplication.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/domain/Inventory.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/domain/DeliveryQueue.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/domain/OrderProcessor.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/domain/Book.java
+/home/max/workspace/conferences/devoxx2020-contract-testing/delivery/src/main/java/com/devoxx/delivery/provider/Streams.java

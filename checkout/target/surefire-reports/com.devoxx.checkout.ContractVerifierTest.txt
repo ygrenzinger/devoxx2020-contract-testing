@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.devoxx.checkout.ContractVerifierTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.189 s <<< FAILURE! - in com.devoxx.checkout.ContractVerifierTest
+validate_shouldCheckoutOrder  Time elapsed: 0.243 s  <<< ERROR!
+java.lang.IllegalStateException: Parsed JSON [{"bookId":"d4d37e73-77a0-4616-8bd2-5ed983d45d14","number":10,"clientId":"yannick.grenzinger","createdAt":[2020,3,9,15,50,25]}] doesn't match the JSON path [$[?(@.['createdAt'] =~ /([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])/)]]
+	at com.devoxx.checkout.ContractVerifierTest.validate_shouldCheckoutOrder(ContractVerifierTest.java:39)
+

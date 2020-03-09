@@ -1,0 +1,28 @@
+{
+  "id" : "a864ef18-08ab-4640-b450-7b7d5f59e99d",
+  "request" : {
+    "url" : "/v1/checkouts",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    },
+    "bodyPatterns" : [ {
+      "matchesJsonPath" : "$[?(@.['bookId'] =~ /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/)]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['number'] =~ /([1-9]\\d*)/)]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['clientId'] =~ /^\\s*\\S[\\S\\s]*/)]"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"bookId\":\"{{{jsonPath request.body 'bookId'}}}\",\"number\":{{{jsonPath request.body 'number'}}} ,\"clientId\":\"{{{jsonPath request.body 'clientId'}}}\",\"createdAt\":\"2016-11-09T11:44:44.797\"}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "a864ef18-08ab-4640-b450-7b7d5f59e99d"
+}
