@@ -18,8 +18,8 @@ You can read a bit the [introduction to Spring Cloud Contract](https://cloud.spr
 )
 
 In inventory project:
-- The maven plugin [doc here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/) is already added in POM.xml spring-cloud-contract-maven-plugin
-- You have to configure the location base contract class available here `com.devoxx.inventory.contracts.ContractsBase` in the maven plugin by adding the location of in configuration `<baseClassForTests>` (see here)[https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/junit.html]. This base class create configure ...
+- Go to Maven pom.xml and uncomment the Spring Cloud Contract test dependancy and plugin [doc here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/) 
+- You have to configure the location base contract class available here `com.devoxx.inventory.contracts.ContractsBase` in the maven plugin by adding the location of in configuration `<baseClassForTests>` (see here)[https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/junit.html]. This base class is mandatory and configure the parent class of generated test classes. It handles the context needed for the tests.
 - run `mvn clean test` to see the plugin generate tests in this class `_target/generated-test-sources_/.../ContractVerifierTest.java`. You can run it as a typical java test class.
 - The contract `shoudRetrieveAllBooks` should pass now. To better understand, the [Groovy DSL documentation is here](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl)
 - Uncomment the test `shoudRetrieveBook`. It fails due to wrong url in the controller. You can easily correct it. You can also see the use of [dynamic and regex properties](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-dynamic-properties)
