@@ -1,6 +1,0 @@
-/home/max/workspace/conferences/devoxx2020-contract-testing/inventory/src/main/java/com/devoxx/inventory/domain/Book.java
-/home/max/workspace/conferences/devoxx2020-contract-testing/inventory/src/main/java/com/devoxx/inventory/InventoryApplication.java
-/home/max/workspace/conferences/devoxx2020-contract-testing/inventory/src/main/java/com/devoxx/inventory/domain/BookIdGenerator.java
-/home/max/workspace/conferences/devoxx2020-contract-testing/inventory/src/main/java/com/devoxx/inventory/api/BookController.java
-/home/max/workspace/conferences/devoxx2020-contract-testing/inventory/src/main/java/com/devoxx/inventory/infrastructure/InMemoryBookInventory.java
-/home/max/workspace/conferences/devoxx2020-contract-testing/inventory/src/main/java/com/devoxx/inventory/domain/BookInventory.java
