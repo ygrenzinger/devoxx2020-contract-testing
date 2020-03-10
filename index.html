@@ -76,13 +76,67 @@
 							Maxime
 						</aside>
 					</section>
+					<section>
+						<img src="images/testing-in-production.jpg"
+							 alt="Si possible, ne pas tester uniquement en production"
+							 height="500px"/>
+					</section>
+					<section>
+						<h3>Comment tester ?</h3>
+					</section>
+					<section>
+						<h3>E2E au niveau plateforme</h3>
+						<table>
+							<thead>
+								<tr>
+									<th style="text-align: center;">Avantages</th>
+									<th style="text-align: center;">Désavantages</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align: center;">Simule la prod</td>
+									<td style="text-align: center;">Complexe à mettre en place</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td style="text-align: center;">Lent et Bloquant</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td style="text-align: center;">Difficile à debug</td>
+								</tr>	
+							</tbody>	
+						</table>
+					</section>
+					<section>
+						<h3>Mock des autres microservices</h3>
+						<table>
+							<thead>
+								<tr>
+									<th style="text-align: center;">Avantages</th>
+									<th style="text-align: center;">Désavantages</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align: center;">Très rapide</td>
+									<td style="text-align: center;">Rien à voir avec la réalité</td>
+								</tr>
+								<tr>
+									<td style="text-align: center;">Pas d'infra nécessaire</td>
+									<td style="text-align: center;">Des tests ok mais la prod tombe</td>
+								</tr>	
+							</tbody>	
+						</table>
+					</section>
 				</section>
 
 				<section>
 					<section>
 						<h2>Contract Testing !</h2>
 						<aside class="notes">
-							Maxime
+							Section par maxime 
 						</aside>
 					</section>
 					<section>
@@ -90,8 +144,6 @@
 						<img src="images/contract-testing-principle.png" height="400px"
 								alt="both consumer and provider should verify the contract" />
 						<aside class="notes">
-							Maxime
-							<br/>
 							Tester les interactions entre consumer et provider
 						</aside>
 					</section>
@@ -99,33 +151,21 @@
 						<h3>Provider / Producer</h3>
 						<blockquote>Celui qui propose l'API</blockquote>
 						<p>Exemple: Mon service REST</p>
-						<aside class="notes">
-							Maxime
-						</aside>
 					</section>
 					<section>
 						<h3>Consumer</h3>
 						<blockquote>Celui qui appelle l'API</blockquote>
 						<p>Exemple: Mes clients Angular</p>
-						<aside class="notes">
-							Maxime
-						</aside>
 					</section>
 					<section>
 						<h2>On définit un contrat</h2>
 						<img src="images/a-contract-and-interactions.png" alt="Un contract"
 							 height="400px"/>
-						<aside class="notes">
-							Maxime
-						</aside>
 					</section>
 					<section>
 						<h2>Et des interactions</h2>
 						<img src="images/interaction.png" alt="Une interaction"
 							 height="400px"/>
-						<aside class="notes">
-							Maxime
-						</aside>
 					</section>
 
 					<section>
@@ -133,153 +173,145 @@
 						<img src="images/contract-testing-mocks.png"
 								alt="Un contract, tester avec des mocks"
 								height="500px"/>
-						<aside class="notes">
-							Maxime
-						</aside>
 					</section>
 
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-2.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-3.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-4.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-5.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-6.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-7.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-8.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#cef28f">
 						<h4>Test d'un consumer</h4>
 						<img src="images/full-test-9.png" height="300px"/>
-						<aside class="notes">Maxime<br/>Maxime enchaine</aside>
 					</section>
 
 
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-10.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-11.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-12.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-13.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-14.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-15.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-16.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 					<section data-transition="none" data-background="#b5d0ff">
 						<h4>Test d'un provider</h4>
 						<img src="images/full-test-17.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
 					</section>
 
 					<section data-transition="slide" >
 						<h2>Au global</h2>
 						<img src="images/both-tests.png" alt="Global view" height="250px">
-						<aside class="notes">Maxime</aside>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>L'atelier</h2>
+						<h2>Le contenu de l'atelier</h2>
 					</section>
 					<section>
 						<h3>Somaire</h3>
 						<ul>
 							<li>Première partie : "Provider driven" avec Spring Cloud Contract</li>
-							<li>Deuxième partie : "Consumer driven" avec repo de contracts + pact</li>
+							<li>Deuxième partie : "Consumer driven" avec repo de contracts, Spring Cloud Contract et Pact</li>
 						</ul>
 					</section>
 					<section>
-						<h3>L'architecture de la plateforme</h3>
+						<h3>L'architecture de notre site de vente de livres</h3>
+						<img src="images/hands-on-architecture.png"
+							 alt="Les différents éléments du contexte de l'atelier"
+							 height="500px"/>
 					</section>
 				</section>
 				
 				<section>
 					<section>
-						<h2>Spring Cloud Contract</h2>
+						<h2>Provider Driven</h2>
+						<blockquote>Les contrats sont controlés par le fournisseur</blockquote>
+						<img src="images/provider-driven-contract.png"
+						     alt="Un contrat pour tous les consumers" />
+ 					</section>
+					<section>
+						<h3>Quand faire du provider driven ?</h3>
+                        <ul>
+							<li>Consumers inconnus</li>
+							<li>Beaucoup de consumers</li>
+							<li>Communication difficile</li>
+						</ul>
+						<blockquote>ex: Api publique de Twitter</blockquote>
+					</section>
+					<section>
+						<h3>Spring Cloud Contract</h3>
 						<img src="images/spring-cloud-logo.png" height="200px"
-								alt="Spring Cloud Contract architcture" />
+								alt="Spring Cloud Contract logo" />
 						<p>Marcin Grzejszczak <a href="https://twitter.com/MGrzejszczak">@MGrzejszczak</a> </p>
 						<aside class="notes">
 							Yannick
 						</aside>
 					</section>
 					<section>
+						<h3>Les avantages</h3>
 						<ul>
-							<li>To avoid breaking change and mitigate version hell.</li>
-							<li>To generate boilerplate test code to be used on the server side.</li>
-							<li>To promote ATDD method in (micro)services architecture style.</li>
-							<li>To ensure that stubs simulate correctly the producer side.</li>
-							<li>To provide a way to publish changes in contracts that are immediately visible on both sides.</li>
+							<li>Intégration facile dans Spring Cloud</li>
+							<li>Génération des tests de votre API REST et de vos messages côté fournisseur</li>
+							<li>Promeut une approche ATDD</li>
+							<li>Génération des stubs WireMock pour les consommateurs</li>
 						</ul>
 					</section>
 					<section>
 						<img src="images/spring-cloud-contract.png" height="600px"
 								alt="Spring Cloud Contract architcture" />
-						<aside class="notes">
-							Yannick
-						</aside>
 					</section>
 					<section>
-						<h3>Contract DSL</h3>
+						<h3>DSL avancé pour définir un contrat</h3>
 						<blockquote>Groovy mais aussi YML / Java / Kotlin</blockquote>
-						<p>Contrat qui suit retrieveAllBooks</p>
-						<aside class="notes">
-							Yannick
-						</aside>
+						<p>L'exemple qui suit est le contrat du endpoint GET /v1/books</p>
 					</section>
 
-                    <section data-background="#cef28f">
+                    <section>
                         <h3>Squelete du contrat</h3>
 						<pre><code class="hljs groovy">
 package contracts
@@ -290,10 +322,9 @@ Contract.make {
 	response { ... }
 }
 							</code></pre>
-							<aside class="notes" >Yannick</aside>
 					</section>
 
-				<section data-background="#cef28f">
+				<section>
 					<h3>Définition de la requête</h3>
 					<pre><code class="hljs groovy">
 method 'GET'
@@ -302,10 +333,9 @@ headers {
 	contentType(applicationJson())
 }
 						</code></pre>
-						<aside class="notes" >Yannick</aside>
 				</section>
 
-			<section data-background="#cef28f">
+			<section>
 				<h3>Définition de la réponse</h3>
 				<pre><code class="hljs groovy">status OK()
 body("""[{
@@ -321,147 +351,81 @@ body("""[{
 }]""")
 headers { contentType(applicationJson()) }
 					</code></pre>
-					<aside class="notes" >Yannick</aside>
+			</section>
+			<section>
+				<h3>Place à la pratique !</h3>
+				<p>Clone du repository github <a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a></p>
 			</section>
 		</section>
 
-				<section>
-					<section>
-						<h3>Qui définit le contrat ?</h3>
-						<h4>Consumer driven VS Provider driven</h4>
-						<aside class="notes">Maxime pose la question<br/>Maxime répond</aside>
-					</section>
+		<section>
 
-					<section>
-						<h3>Consumer Driven</h3>
-						<blockquote>J'ai besoin de ça</blockquote>
-						<img src="images/consumer-driven-contract.png"
-						     alt="Plusieurs contract pour un provider" />
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Quand faire du consumer driven ?</h3>
-                        <ul>
-							<li>Peu de consumers</li>
-							<li>Communication aisée</li>
-						</ul>
-						<blockquote>ex: Backend for Frontend</blockquote>
-						<aside class="notes">Maxime</aside>
-					</section>
+			<section>
+				<h2>Partie 2 : Consumer Driven</h2>
+				<blockquote>Le consommateur pousse le contrat dont il a besoin</blockquote>
+				<img src="images/consumer-driven-contract.png"
+						alt="Plusieurs contract pour un provider" />
+				<aside class="notes">Maxime</aside>
+			</section>
+			<section>
+				<h3>Quand faire du consumer driven ?</h3>
+				<ul>
+					<li>Peu de consommateur</li>
+					<li>Communication aisée</li>
+				</ul>
+				<blockquote>ex: Backend for Frontend</blockquote>
+			</section>
 
-					<section>
-						<h3>Provider Driven</h3>
-						<blockquote>Je fonctionne de cette manière</blockquote>
-						<img src="images/provider-driven-contract.png"
-						     alt="Un contrat pour tous les consumers" />
-						<aside class="notes">Maxime</aside>
- 					</section>
-					<section>
-						<h3>Quand faire du provider driven ?</h3>
-                        <ul>
-							<li>Consumers inconnus</li>
-							<li>Beaucoup de consumers</li>
-							<li>Communication difficile</li>
-						</ul>
-						<blockquote>ex: Api publique de Twitter</blockquote>
-						<aside class="notes">Maxime</aside>
-					</section>
+			<section>
+				<h3>De provider à consumer driven ?</h3>
+			</section>
 
-				</section>
+			<section>
+				<h3>Repo distant</h3>
+				<p>Dans le cadre du "consumer driven", on va favoriser une zone de dépo des contrats par consommateurs pour chaque fournisseur</p>
+			</section>
 
-				<section>
-					<section>
-						<h3>Où stocker les contrats ?</h3>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Partage des contrats</h3>
-						<ul>
-							<li>Github, bitbucket, ...</li>
-							<li>Nexus, Artifactory, ...</li>
-							<li>Contract repository</li>
-						</ul>
-						<aside class="notes">Maxime</aside>
-					</section>
-				</section>
+			<section>
+				<h3>Pact, le framework Consumer Driven polyglot</h3>
+				<img src="images/pact-logo.png" alt="Pact logo" >
+				<aside class="notes">Mais on peut garder Spring Cloud Contract ;)</aside>
+			</section>
 
-				<section>
-					<section>
-						<h3>Quels outils ?</h3>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<table>
-							<tr>
-								<td style="text-align: center;">Spring cloud contract</td>
-								<td style="text-align: center;">Pact</td>
-							</tr>
-							<tr>
-								<td><img src="images/spring-cloud.jpg" alt="Spring cloud logo"/></td>
-								<td><img src="images/pact-logo.png" alt="Pact logo" ></td>
-							</tr>		
-						</table>
-						<aside class="notes">
-							Maxime<br/>
-							<br/>
-							Spring : provider puis consumer<br/>
-							Pact : provider<br/>
-							<br/>
-							Maxime enchaine
-						</aside>
-					</section>
-				</section>
+			<section>
+				<h3>Polyglote</h3>
+				<img src="images/logo-techno/ruby.png" height="100px">
+				<img src="images/logo-techno/java.png" height="100px">
+				<img src="images/logo-techno/dotnet.png" height="100px">
+				<img src="images/logo-techno/go.png" height="100px">
+				<img src="images/logo-techno/javascript.png" height="100px">
+				<img src="images/logo-techno/swift.png" height="100px">
+				<img src="images/logo-techno/php.png" height="100px">
+				<aside class="notes">Maxime</aside>
+			</section>
 
-				<section>
-					<section>
-						<img src="images/pact-logo.png" alt="Pact logo" >
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Pourquoi ?</h3>
-						<ul>
-							<li>Consumer driven Contract Testing</li>
-							<li>Open source</li>
-							<li>Bien documenté</li>
-							<li>Communauté active</li>
-						</ul>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Polyglote</h3>
-						<img src="images/logo-techno/ruby.png" height="100px">
-						<img src="images/logo-techno/java.png" height="100px">
-						<img src="images/logo-techno/dotnet.png" height="100px">
-						<img src="images/logo-techno/go.png" height="100px">
-						<img src="images/logo-techno/javascript.png" height="100px">
-						<img src="images/logo-techno/swift.png" height="100px">
-						<img src="images/logo-techno/php.png" height="100px">
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Contract Repository : Pact Broker</h3>
-						<ul>
-							<li>Stocke les contrats</li>
-							<li>Cartographie les interactions</li>
-							<li>Liste les vérifications</li>
-						</ul>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Pact Broker</h3>
-						<img src="images/pact-broker-network-diagram.png" 
-							 height="500px"
-							 alt="interaction network"/>
-						<aside class="notes">Maxime<br/>
-							Maxime enchaine pour la démo</aside>
-					</section>
-				</section>
-				<section>
+			<section>
+				<h3>Contract Repository : Pact Broker</h3>
+				<ul>
+					<li>Stocke les contrats</li>
+					<li>Cartographie les interactions</li>
+					<li>Liste les vérifications</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Pact Broker</h3>
+				<img src="images/pact-broker-network-diagram.png" 
+						height="500px"
+						alt="interaction network"/>
+				<aside class="notes">Maxime<br/>
+					Maxime enchaine pour la démo</aside>
+			</section>
 
-					<section>
-						<h2>Démo</h2>
-						<aside class="notes" >Maxime</aside>
-					</section>
+			<section>
+				<h3>Place à la pratique !</h3>
+				<p>Switch sur la branche "part2" de <a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a></p>
+			</section>
+		</section>
+		<section>
 
 					<section>
 						<h2>Notre cas</h2>
