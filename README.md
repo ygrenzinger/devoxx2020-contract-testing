@@ -12,6 +12,9 @@ We will use Spring Cloud Contract, very well integrated with Spring Boot applica
 
 ## Part 1
 
+To have a global view of this part, the following UML diagram shows the relationship of the parts within Spring Cloud Contract:
+![Spring Cloud Contract Diagram](spring-cloud-contract-diagram.png)
+
 You can read a bit the [introduction to Spring Cloud Contract](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/getting-started.html#getting-started-introducing-spring-cloud-contract)
 
 In inventory project, the goal is to learn how to test APIs and the groovy DSL. 
@@ -56,55 +59,11 @@ In checkout project, the goal are to learn how to use the contract test as stubs
        - and createdAt field the current date time - You can use dependency injection or matchers ;)
 - mvn install for making stub accessible for consumer
 
-
 In delivery project:
  - Make test pass in `DeliveryApplicationTests.java` in delivery service to [trigger stub message](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-messaging-consumer)
 
 
-### Part 2
-
-Init a local "distant" Git repository:
-- git init --bare test-repo.git
-- git clone test-repo.git/ test-clone
-- touch README.md
-- git add .
-- git commit -m "add README"
-- git push origin master
-
-Run the spring-cloud-contract convert and generateStubs then
-Add maven configuration to push to repo
-            <plugin>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <version>2.2.1.RELEASE</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <!-- By default we will not push the stubs back to SCM,
-                            you have to explicitly add it as a goal -->
-                            <goal>pushStubsToScm</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <contractsMode>LOCAL</contractsMode>
-                    <contractsRepositoryUrl>git://file:///Users/ygrenzinger/git/contract.git</contractsRepositoryUrl>
-                    <contractDependency>
-                        <groupId>${project.groupId}</groupId>
-                        <artifactId>${project.artifactId}</artifactId>
-                        <version>${project.version}</version>
-                    </contractDependency>
-                    <testFramework>JUNIT5</testFramework>
-                    <baseClassForTests>com.devoxx.checkout.contracts.ContractsBase</baseClassForTests>
-                </configuration>
-            </plugin>
-Run the spring-cloud-contract:pushStubsToScm in maven inside the inventory project
-Use stubs mode remote and add repository root
-
-
-## Bonus
+### Bonus
 
 In checkout project:
 - Implement the `shouldCheckoutOrder` contract. Don't forget to add the baseClass and add it in the plugin configuration (same directory as in inventory if you want). You can also use the WireMock stub from inventory contract testing.
@@ -117,8 +76,6 @@ In checkout project:
 - _bonus_ : You can add configuration in yml for stub runner to avoid duplication in the annotations
 
 
-https://github.com/spring-cloud-samples/spring-cloud-contract-samples/blob/master/producer_with_git/pom.xml#L98
-https://cloud-samples.spring.io/spring-cloud-contract-samples/workshops.html#_setup
+## Part 2
 
-
- 
+Go and checkout branch "part2"
