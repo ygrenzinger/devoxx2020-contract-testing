@@ -40,7 +40,7 @@ public class BookController {
             return ResponseEntity.badRequest().body(book);
         }
 
-        book.setId(bookIdGenerator.randomId());
+        book.initUUID(bookIdGenerator.randomId());
         bookInventory.insertBook(book);
         return ResponseEntity.created(URI.create("/v1/books/"+book.getId())).body(book);
     }

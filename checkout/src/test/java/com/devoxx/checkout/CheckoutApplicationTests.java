@@ -27,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+//@AutoConfigureStubRunner - TO_COMPLETE
 public class CheckoutApplicationTests {
 
     @Autowired
