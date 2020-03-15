@@ -22,8 +22,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 )
 class DeliveryApplicationTests {
 
-//    @Autowired
-//    StubTrigger stubTrigger;
+    @Autowired
+    StubTrigger stubTrigger;
 
     @Autowired
     private DeliveryQueue deliveryQueue;
@@ -35,8 +35,8 @@ class DeliveryApplicationTests {
 
     @Test
     void should_correctly_process_order() {
-        // use stub to trigger message
-        Order order = new Order("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 2, "yannick");
+        stubTrigger.trigger("should send order");
+        Order order = new Order("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 10, "yannick");
         assertThat(deliveryQueue.ordersInProcess()).containsExactly(order);
     }
 

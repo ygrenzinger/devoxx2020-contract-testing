@@ -2,6 +2,7 @@ package com.devoxx.checkout.api;
 
 import com.devoxx.checkout.domain.Cashier;
 import com.devoxx.checkout.domain.Order;
+import com.devoxx.checkout.domain.ValidatedOrder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class CheckoutController {
     }
 
     @PostMapping("/v1/checkouts")
-    public Order create(@RequestBody Order order) {
+    public ValidatedOrder create(@RequestBody Order order) {
         return cashier.checkoutNow(order);
     }
 

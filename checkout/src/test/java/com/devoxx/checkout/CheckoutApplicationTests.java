@@ -6,12 +6,12 @@ import com.devoxx.checkout.domain.Order;
 import com.devoxx.checkout.domain.ValidatedOrder;
 import com.devoxx.checkout.provider.Streams;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.stream.test.binder.MessageCollector;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.Message;
@@ -27,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureStubRunner
 public class CheckoutApplicationTests {
 
     @Autowired
@@ -46,7 +47,6 @@ public class CheckoutApplicationTests {
 
     @SuppressWarnings("unchecked")
     @Test
-    @Disabled
     void should_checkout_order() throws Exception {
         //when
         Order order = new Order("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 2, "yannick");
