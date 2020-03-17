@@ -267,7 +267,10 @@ it('should get book inventory', (done) => {
     });
 ```
 
-##### Write a contract
+You can run the tests with ```npm test``` or ```yarn test```.
+This should create the contracts files in the ```pacts``` folder.
+
+#### Write a contract
 
 Now we to send the order to the ```checkout``` service.
 To do that we will write a contract between ```book-shop-basket``` and ```checkout``` service
@@ -280,4 +283,4 @@ This interaction will be :
   - a quantity field which is a number, e.g: 2
   - a clientId field which is a string, e.g: "yannick"
 
-
+Run ``` npm test``` or ```yarn test``` to generate the pact files.
