@@ -269,4 +269,15 @@ it('should get book inventory', (done) => {
 
 ##### Write a contract
 
+Now we to send the order to the ```checkout``` service.
+To do that we will write a contract between ```book-shop-basket``` and ```checkout``` service
+
+This interaction will be :
+- An HTTP POST
+- on /v1/checkouts
+- with, as a body an list of JSON object with:
+  - the bookId field which is the UUID, e.g: "d4d37e73-77a0-4616-8bd2-5ed983d45d14"
+  - a quantity field which is a number, e.g: 2
+  - a clientId field which is a string, e.g: "yannick"
+
 

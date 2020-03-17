@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { Matchers, PactWeb } from '@pact-foundation/pact-web';
 import { HttpClientModule } from "@angular/common/http";
-import { InventoryService } from "./inventory.service";
-import { Book } from './typings';
+import { CheckoutService } from './checkout.service';
+import { Order } from './typings';
 
-describe('InventoryServiceContract', () => {
+describe('CheckoutServiceContract', () => {
   let provider;
 
   // Setup Pact mock server for this service
@@ -12,8 +12,8 @@ describe('InventoryServiceContract', () => {
 
     provider = await new PactWeb({
       consumer: 'book-shop-basket',
-      provider: 'inventory-service',
-      port: 1234
+      provider: 'checkout-service',
+      port: 1235
     });
 
     // required for slower CI environments
@@ -26,7 +26,7 @@ describe('InventoryServiceContract', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      providers: [InventoryService],
+      providers: [CheckoutService],
     });
   });
 
@@ -40,27 +40,29 @@ describe('InventoryServiceContract', () => {
     await provider.finalize();
   });
 
-  const books: Book[] = [
-    {
-      id: 'e72ad291-5818-4e92-9344-a8050656c9b2',
-      name: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-      price: 30
-    }
-  ];
+  const order: Order = {
+    bookId: '47baae30-09a7-41a4-9593-b181316cd1a2',
+    number: 5,
+    clientId: '0fcfd742-0f59-4843-90b1-66504ed10468'
+  };
 
-  describe('InventoryService', () => {
+  describe('CheckoutService', () => {
 
     beforeAll((done) => {
       provider.addInteraction({
         state: ``,
-        uponReceiving: 'Get books inventory',
+        uponReceiving: 'Checkout an order',
         withRequest: {
-          method: 'GET',
-          path: '/v1/books'
+          method: 'POST',
+          path: '/v1/checkouts',
+          body: order,
+          headers: {
+            'Content-Type': 'application/json'
+          }
         },
         willRespondWith: {
           status: 200,
-          body: Matchers.somethingLike(books),
+          body: Matchers.somethingLike(order),
           headers: {
             'Content-Type': 'application/json'
           }
@@ -68,10 +70,10 @@ describe('InventoryServiceContract', () => {
       }).then(done, error => done.fail(error));
     });
 
-    it('should get book inventory', (done) => {
-      const inventoryService: InventoryService = TestBed.get(InventoryService);
-      inventoryService.allBooks().subscribe(response => {
-        expect(response).toEqual(books);
+    it('should checkout', (done) => {
+      const checkoutService: CheckoutService = TestBed.get(CheckoutService);
+      checkoutService.checkout(order).subscribe(response => {
+        expect(response).toEqual(order);
         done();
       }, error => {
         done.fail(error);

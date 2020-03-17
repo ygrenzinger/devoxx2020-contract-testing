@@ -9,12 +9,12 @@ import { InventoryService } from '../inventory.service';
 })
 export class BasketComponent implements OnInit {
 
-  book: Book[] = []
+  books: Book[] = []
 
   constructor(private inventoryService: InventoryService) { }
 
   ngOnInit() {
-    this.inventoryService.allBooks().subscribe(book => this.book = book)
+    this.inventoryService.allBooks().subscribe(books => this.books = books)
   }
 
 }

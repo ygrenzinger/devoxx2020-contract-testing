@@ -12,7 +12,7 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma'),
-      //require('@pact-foundation/karma-pact')
+      require('@pact-foundation/karma-pact')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -30,19 +30,29 @@ module.exports = function (config) {
     browsers: ['Chromium'],
     singleRun: false,
     restartOnFileChange: true,
-    // pact: [
-    //   {
-    //     cors: true,
-    //     consumer: 'book-shop-basket',
-    //     provider: 'inventory-service',
-    //     port: 1234,
-    //     spec: 3,
-    //     log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
-    //     dir: path.resolve('pacts')
-    //   }
-    // ],
-    // proxies: {
-    //   '/v1/books': 'http://localhost:1234/v1/books'
-    // }
+    pact: [
+      {
+        cors: true,
+        consumer: 'book-shop-basket',
+        provider: 'inventory-service',
+        port: 1234,
+        spec: 3,
+        log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
+        dir: path.resolve('pacts')
+      },
+      {
+        cors: true,
+        consumer: 'book-shop-basket',
+        provider: 'checkout-service',
+        port: 1235,
+        spec: 3,
+        log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
+        dir: path.resolve('pacts')
+      }
+    ],
+    proxies: {
+      '/v1/books': 'http://localhost:1234/v1/books',
+      '/v1/checkouts': 'http://localhost:1235/v1/checkouts'
+    }
   });
 };

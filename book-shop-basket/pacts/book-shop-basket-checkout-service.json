@@ -1,0 +1,46 @@
+{
+  "consumer": {
+    "name": "book-shop-basket"
+  },
+  "provider": {
+    "name": "checkout-service"
+  },
+  "interactions": [
+    {
+      "description": "Checkout an order",
+      "request": {
+        "method": "POST",
+        "path": "/v1/checkouts",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+          "number": 5,
+          "clientId": "0fcfd742-0f59-4843-90b1-66504ed10468"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+          "number": 5,
+          "clientId": "0fcfd742-0f59-4843-90b1-66504ed10468"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}
