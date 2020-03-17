@@ -1,3 +1,6 @@
 stubrunner:
   ids: 'com.devoxx:inventory:+:stubs:8080'
-  stubsMode: LOCAL
+  stubsMode: XXX
+  repositoryRoot: XXX
+  setStubsPerConsumer: XXX
+  consumerName: XXX

@@ -1,0 +1,28 @@
+{
+  "id" : "db72af35-dd89-4d1d-995b-0c3f4509d23f",
+  "request" : {
+    "url" : "/v1/checkouts",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "equalTo" : "application/json"
+      }
+    },
+    "bodyPatterns" : [ {
+      "matchesJsonPath" : "$[?(@.['bookId'] == 'd4d37e73-77a0-4616-8bd2-5ed983d45d14')]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['number'] == 2)]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['clientId'] == 'yannick')]"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"bookId\":\"d4d37e73-77a0-4616-8bd2-5ed983d45d14\",\"number\":2,\"clientId\":\"yannick\",\"createdAt\":\"2011-01-11T12:23:34\"}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "db72af35-dd89-4d1d-995b-0c3f4509d23f"
+}

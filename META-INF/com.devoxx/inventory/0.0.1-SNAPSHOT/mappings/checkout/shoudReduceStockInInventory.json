@@ -1,0 +1,21 @@
+{
+  "id" : "d319cf77-7e9a-4727-85a9-68532d17dedd",
+  "request" : {
+    "url" : "/v1/books/d4d37e73-77a0-4616-8bd2-5ed983d45d14/stock/reduce/2",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"stock\":98}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "d319cf77-7e9a-4727-85a9-68532d17dedd"
+}

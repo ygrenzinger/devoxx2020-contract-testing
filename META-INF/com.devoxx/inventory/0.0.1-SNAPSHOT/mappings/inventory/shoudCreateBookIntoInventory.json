@@ -1,0 +1,26 @@
+{
+  "id" : "983a276e-14d8-4276-95f9-ec4f71978887",
+  "request" : {
+    "url" : "/v1/books",
+    "method" : "POST",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    },
+    "bodyPatterns" : [ {
+      "matchesJsonPath" : "$[?(@.['name'] == 'Scala')]"
+    }, {
+      "matchesJsonPath" : "$[?(@.['price'] == '28.7')]"
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"id\":\"8be320ec-0e1d-48ef-a4ac-a562efa939a0\",\"name\":\"Scala\",\"price\":12.71952105302628,\"stock\":0}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "983a276e-14d8-4276-95f9-ec4f71978887"
+}

@@ -63,6 +63,13 @@
 				<version>2.2.1.RELEASE</version>
 				<extensions>true</extensions>
                 <configuration>
+					<contractsMode>REMOTE</contractsMode>
+					<contractsRepositoryUrl>git://XXXX</contractsRepositoryUrl>
+					<contractDependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>${project.artifactId}</artifactId>
+						<version>${project.version}</version>
+					</contractDependency>
 					<baseClassForTests>com.devoxx.inventory.contracts.ContractsBase</baseClassForTests>
                     <testFramework>JUNIT5</testFramework>
                 </configuration>

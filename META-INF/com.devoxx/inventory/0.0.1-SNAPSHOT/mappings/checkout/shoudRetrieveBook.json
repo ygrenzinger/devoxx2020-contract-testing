@@ -1,0 +1,21 @@
+{
+  "id" : "662fa301-ac85-4683-bacb-5c10bdcc385a",
+  "request" : {
+    "urlPattern" : "/v1/books/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+    "method" : "GET",
+    "headers" : {
+      "Content-Type" : {
+        "matches" : "application/json.*"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"id\":\"d4d37e73-77a0-4616-8bd2-5ed983d45d14\",\"name\":\"Java\",\"price\":\"19.9\",\"stock\":100}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "662fa301-ac85-4683-bacb-5c10bdcc385a"
+}
