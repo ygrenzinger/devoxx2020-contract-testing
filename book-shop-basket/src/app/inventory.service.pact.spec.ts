@@ -10,6 +10,7 @@ describe('InventoryServiceContract', () => {
   // Setup Pact mock server for this service
   beforeAll(async () => {
 
+    // setup Pact
     provider = await new PactWeb({
       consumer: 'book-shop-basket',
       provider: 'inventory-service',
@@ -40,14 +41,6 @@ describe('InventoryServiceContract', () => {
     await provider.finalize();
   });
 
-  const books: Book[] = [
-    {
-      id: 'e72ad291-5818-4e92-9344-a8050656c9b2',
-      name: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-      price: 30
-    }
-  ];
-
   describe('InventoryService', () => {
 
     beforeAll((done) => {
@@ -60,7 +53,13 @@ describe('InventoryServiceContract', () => {
         },
         willRespondWith: {
           status: 200,
-          body: Matchers.somethingLike(books),
+          body: Matchers.somethingLike([
+            {
+              id: 'e72ad291-5818-4e92-9344-a8050656c9b2',
+              name: 'Clean Code: A Handbook of Agile Software Craftsmanship',
+              price: 30
+            }
+          ]),
           headers: {
             'Content-Type': 'application/json'
           }
