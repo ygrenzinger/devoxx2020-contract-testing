@@ -11,6 +11,8 @@ We will use Spring Cloud Contract, very well integrated with Spring Boot applica
 
 ## Part 1
 
+In this part of the workshop, you will implement **provider driven contract** with Spring Cloud Contract.
+
 To have a global view of this part, the following UML diagram shows the relationship of the parts within Spring Cloud Contract:
 ![Spring Cloud Contract Diagram](spring-cloud-contract-diagram.png)
 
@@ -79,23 +81,29 @@ In checkout project:
 
 ## Part 2
 
-In opposition to part one, part two will be about consumer driven contract testing.
+In opposition to part one, part two will be about **consumer driven contract testing**. As the name says, in consumer driven contract testing, the contract is defined by the consumer. This means, each consumer will explain to the provider which service it needs.
 
-As the name says, in consumer driven contract testing, the contract is defined by the consumer.
+### Spring Cloud Contract - Consumer Driven.
 
-This means, each consumer will explain to the provider which service it needs.
+First we will configure Spring Cloud Contract in a consumer driven way. 
 
+You have to checkout "part2" branch and initialise a repository for contracts. To initialize the local Git repository, you can use the Golang tool provided in the `./tool` directory and associated OS. It will create a repository, initialize it with some contracts in a consumer driven way and give you back the url to use. You can also read the associated [README](./tool/README.md).
 
+Next you can use the repo url to configure the Spring Cloud Contract maven plugin in inventory and checkout projects [See how to configure here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/configs.html). 
 
-[Spring cloud contract](https://spring.io/projects/spring-cloud-contract) is a nice tool but it is hard to use on the front end side because it all java.
+Run `mvn clean spring-cloud-contract:generateTests` to see the generated test files (one for each consumer) in `target/generated-test-sources`.
 
-That's why we will use another tool but you'll see it's not that hard to understand.
+You also have to correctly configure the consumers using the Git repository [See how to configure here](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-stubs-per-consumer): 
+- in checkout application.yml
+- in delivery DeliveryApplicationTests.yml
+
+You now have Spring Cloud Contract configured in a consumer driven way !
 
 ### Pact
 
-[Pact](https://docs.pact.io/) is the tool we will use.
+[Spring cloud contract](https://spring.io/projects/spring-cloud-contract) is a nice tool but it's only for Java / Spring Cloud providers.
 
-Pact is quite similar to Spring cloud contract but really enfore the consumer driven principle.
+That's why we will use [Pact](https://docs.pact.io/). Pact is quite similar to Spring Cloud Contract but really enfore the consumer driven principle.
 
 #### The front end
 
@@ -284,3 +292,24 @@ This interaction will be :
   - a clientId field which is a string, e.g: "yannick"
 
 Run ``` npm test``` or ```yarn test``` to generate the pact files.
+
+#### Back to Spring Cloud Contract
+
+Now you have a new Pact contracts for your front end as a consumer of inventory and checkout providers.
+
+You can push them in your "remote" contract's repository using the previous URL / directory without the .git at the end. 
+- Create directories for this new consumer for inventory and checkout providers and add the associated Pact contracts 
+- Add the pact plugin dependency in Spring Cloud Contract maven plugin. [More information here](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/howto.html#how-to-use-pact-broker-pact) 
+```
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-contract-pact</artifactId>
+        <version>2.2.1.RELEASE</version>
+    </dependency>
+</dependencies>
+```
+
+Run `mvn clean spring-cloud-contract:generateTests` to see the newly generated test file with the same name as the directories created previously in `target/generated-test-sources`.
+
+**Bravo ! You have successfully reached the end of workshop**
