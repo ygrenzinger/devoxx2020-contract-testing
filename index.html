@@ -427,117 +427,6 @@ headers { contentType(applicationJson()) }
 				<p>Switch sur la branche "part2" de <a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a></p>
 			</section>
 		</section>
-		<section>
-
-					<section>
-						<h2>Notre cas</h2>
-						<img src="images/use-case.png" />
-						<aside class="notes" >Maxime</aside>
-					</section>
-
-					<section>
-						<h3>Search Consumer : Définition du contrat</h3>
-						<img src="images/contract.png" />
-						<aside class="notes" >Maxime</aside>
-					</section>
-
-                    <section data-background="#cef28f">
-                        <h3>Search Consumer : Définition du contrat</h3>
-                        <pre><code class="hljs java">@Pact(provider = "Catalog_Provider",consumer = "Search_Consumer")
-fun getAnExistingProduct(builder: PactDslWithProvider): RequestResponsePact {
-	return builder
-		.uponReceiving("Get a product")
-		.method("GET")
-		.path("/products/1")
-		.willRespondWith()
-		.status(HttpStatus.OK.value())
-		.body(PactDslJsonBody()
-			.numberType("id", 1)
-			.stringType("name", "Shoes")
-			.asBody())
-		.toPact()
-}</code></pre>
-							<aside class="notes" >Maxime</aside>
-					</section>
-					<section data-background="#cef28f">
-						<h3>Contrat généré</h3>
-						<pre><code class="hljs json">{
-    "provider": {
-        "name": "Catalog_Provider"
-    },
-    "consumer": {
-        "name": "Search_Consumer"
-    },
-    "interactions": [
-        {
-            "description": "Get a product",
-            "request": {
-                "method": "GET",
-                "path": "/products/1"
-            },
-            "response": {
-                "status": 200,
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "body": {
-                    "id": 1,
-                    "name": "Shoes"
-                },
-                "matchingRules": {
-                    "body": {
-                        "$.id": {
-                            "matchers": [
-                                {
-                                    "match": "number"
-                                }
-                            ],
-                            "combine": "AND"
-                        },
-                        "$.name": {
-                            "matchers": [
-                                {
-                                    "match": "type"
-                                }
-                            ],
-                            "combine": "AND"
-                        }
-                    }
-                }
-            }
-        }
-    ],
-    "metadata": {
-        "pactSpecification": {
-            "version": "3.0.0"
-        },
-        "pact-jvm": {
-            "version": "3.5.24"
-        }
-    }
-}</code></pre>
-						<aside class="notes" >Maxime</aside>
-					</section>
-					<section data-background="#cef28f">
-							<h2>Consumer Test</h2>
-						<img src="images/full-test-9.png" height="300px"/>
-						<aside class="notes" >Maxime</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h3>L'architecture de la plateforme</h3>
-						<img src="images/lab-architecture-2.png" alt="Three service architecture" height="400px">
-					</section>
-
-					<section>
-						<h3>A vous</h3>
-						<a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a>
-						<br/>
-						<strong>Branche : part2</strong>
-					</section>
-				</section>
 
 				<section>
 					<section>
@@ -600,7 +489,6 @@ fun getAnExistingProduct(builder: PactDslWithProvider): RequestResponsePact {
 				<section>
 					<h2>Merci</h2>
 				</section>
-
 			</div>
 		</div>
 
