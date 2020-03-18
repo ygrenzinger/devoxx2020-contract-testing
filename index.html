@@ -235,12 +235,13 @@
 					<section>
 						<h3>Somaire</h3>
 						<ul>
-							<li>Première partie : "Provider driven" avec Spring Cloud Contract</li>
-							<li>Deuxième partie : "Consumer driven" avec repo de contracts + pact</li>
+							<li>Provider driven</li>
+							<li>Consumer driven</li>
 						</ul>
 					</section>
 					<section>
 						<h3>L'architecture de la plateforme</h3>
+						<img src="images/lab-architecture.png" alt="Three service architecture" height="400px">
 					</section>
 				</section>
 				
@@ -264,7 +265,8 @@
 						</ul>
 					</section>
 					<section>
-						<img src="images/spring-cloud-contract.png" height="600px"
+						<h3>Spring cloud contract</h3>
+						<img src="images/spring-cloud-contract.png" height="550px"
 								alt="Spring Cloud Contract architcture" />
 						<aside class="notes">
 							Yannick
@@ -293,9 +295,9 @@ Contract.make {
 							<aside class="notes" >Yannick</aside>
 					</section>
 
-				<section data-background="#cef28f">
-					<h3>Définition de la requête</h3>
-					<pre><code class="hljs groovy">
+					<section data-background="#cef28f">
+						<h3>Définition de la requête</h3>
+						<pre><code class="hljs groovy">
 method 'GET'
 url '/v1/books'
 headers {
@@ -303,11 +305,11 @@ headers {
 }
 						</code></pre>
 						<aside class="notes" >Yannick</aside>
-				</section>
+					</section>
 
-			<section data-background="#cef28f">
-				<h3>Définition de la réponse</h3>
-				<pre><code class="hljs groovy">status OK()
+					<section data-background="#cef28f">
+						<h3>Définition de la réponse</h3>
+						<pre><code class="hljs groovy">status OK()
 body("""[{
 	"id": "d4d37e73-77a0-4616-8bd2-5ed983d45d14",
 	"name": "Java",
@@ -320,182 +322,80 @@ body("""[{
 	"stock": 0
 }]""")
 headers { contentType(applicationJson()) }
-					</code></pre>
-					<aside class="notes" >Yannick</aside>
-			</section>
-		</section>
-
-				<section>
-					<section>
-						<h3>Qui définit le contrat ?</h3>
-						<h4>Consumer driven VS Provider driven</h4>
-						<aside class="notes">Maxime pose la question<br/>Maxime répond</aside>
+							</code></pre>
+							<aside class="notes" >Yannick</aside>
+						</section>
 					</section>
 
 					<section>
-						<h3>Consumer Driven</h3>
-						<blockquote>J'ai besoin de ça</blockquote>
-						<img src="images/consumer-driven-contract.png"
-						     alt="Plusieurs contract pour un provider" />
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Quand faire du consumer driven ?</h3>
-                        <ul>
-							<li>Peu de consumers</li>
-							<li>Communication aisée</li>
-						</ul>
-						<blockquote>ex: Backend for Frontend</blockquote>
-						<aside class="notes">Maxime</aside>
+						<h3>A vous</h3>
+						<a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a>
+						<br/>
+						<strong>Branche : part1</strong>
 					</section>
 
 					<section>
-						<h3>Provider Driven</h3>
-						<blockquote>Je fonctionne de cette manière</blockquote>
-						<img src="images/provider-driven-contract.png"
-						     alt="Un contrat pour tous les consumers" />
-						<aside class="notes">Maxime</aside>
- 					</section>
-					<section>
-						<h3>Quand faire du provider driven ?</h3>
-                        <ul>
-							<li>Consumers inconnus</li>
-							<li>Beaucoup de consumers</li>
-							<li>Communication difficile</li>
-						</ul>
-						<blockquote>ex: Api publique de Twitter</blockquote>
-						<aside class="notes">Maxime</aside>
-					</section>
+						<section>
+							<h2>Deuxième partie : "Consumer driven"</h2>
+							<h3>avec repo de contracts + pact</h3>
+						</section>
 
-				</section>
+						<section>
+							<h3>Consumer driven VS Provider driven</h3>
+						</section>
 
-				<section>
-					<section>
-						<h3>Où stocker les contrats ?</h3>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Partage des contrats</h3>
-						<ul>
-							<li>Github, bitbucket, ...</li>
-							<li>Nexus, Artifactory, ...</li>
-							<li>Contract repository</li>
-						</ul>
-						<aside class="notes">Maxime</aside>
-					</section>
-				</section>
+						<section>
+							<h3>Provider Driven</h3>
+							<blockquote>Je fonctionne de cette manière</blockquote>
+							<img src="images/provider-driven-contract.png"
+								alt="Un contrat pour tous les consumers" />
+							<aside class="notes">Maxime</aside>
+						</section>
+						<section>
+							<h3>Quand faire du provider driven ?</h3>
+							<ul>
+								<li>Consumers inconnus</li>
+								<li>Beaucoup de consumers</li>
+								<li>Communication difficile</li>
+							</ul>
+							<blockquote>ex: Api publique de Twitter</blockquote>
+							<aside class="notes">Maxime</aside>
+						</section>
 
-				<section>
-					<section>
-						<h3>Quels outils ?</h3>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<table>
-							<tr>
-								<td style="text-align: center;">Spring cloud contract</td>
-								<td style="text-align: center;">Pact</td>
-							</tr>
-							<tr>
-								<td><img src="images/spring-cloud.jpg" alt="Spring cloud logo"/></td>
-								<td><img src="images/pact-logo.png" alt="Pact logo" ></td>
-							</tr>		
-						</table>
-						<aside class="notes">
-							Maxime<br/>
-							<br/>
-							Spring : provider puis consumer<br/>
-							Pact : provider<br/>
-							<br/>
-							Maxime enchaine
-						</aside>
-					</section>
-				</section>
+						<section>
+							<h3>Consumer Driven</h3>
+							<blockquote>J'ai besoin de ça</blockquote>
+							<img src="images/consumer-driven-contract.png"
+								alt="Plusieurs contract pour un provider" />
+							<aside class="notes">Maxime</aside>
+						</section>
+						<section>
+							<h3>Quand faire du consumer driven ?</h3>
+							<ul>
+								<li>Peu de consumers</li>
+								<li>Communication aisée</li>
+							</ul>
+							<blockquote>ex: Backend for Frontend</blockquote>
+							<aside class="notes">Maxime</aside>
+						</section>
 
-				<section>
-					<section>
-						<img src="images/pact-logo.png" alt="Pact logo" >
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Pourquoi ?</h3>
-						<ul>
-							<li>Consumer driven Contract Testing</li>
-							<li>Open source</li>
-							<li>Bien documenté</li>
-							<li>Communauté active</li>
-						</ul>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Polyglote</h3>
-						<img src="images/logo-techno/ruby.png" height="100px">
-						<img src="images/logo-techno/java.png" height="100px">
-						<img src="images/logo-techno/dotnet.png" height="100px">
-						<img src="images/logo-techno/go.png" height="100px">
-						<img src="images/logo-techno/javascript.png" height="100px">
-						<img src="images/logo-techno/swift.png" height="100px">
-						<img src="images/logo-techno/php.png" height="100px">
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Contract Repository : Pact Broker</h3>
-						<ul>
-							<li>Stocke les contrats</li>
-							<li>Cartographie les interactions</li>
-							<li>Liste les vérifications</li>
-						</ul>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section>
-						<h3>Pact Broker</h3>
-						<img src="images/pact-broker-network-diagram.png" 
-							 height="500px"
-							 alt="interaction network"/>
-						<aside class="notes">Maxime<br/>
-							Maxime enchaine pour la démo</aside>
-					</section>
-				</section>
-				<section>
+						<section>
+							<h3>Où stocker les contrats ?</h3>
+							<aside class="notes">Maxime</aside>
+						</section>
+						<section>
+							<h3>Partage des contrats</h3>
+							<ul>
+								<li>Github, bitbucket, ...</li>
+								<li>Nexus, Artifactory, ...</li>
+								<li>Contract repository</li>
+							</ul>
+							<aside class="notes">Maxime</aside>
+						</section>
 
-					<section>
-						<h2>Démo</h2>
-						<aside class="notes" >Maxime</aside>
-					</section>
-
-					<section>
-						<h2>Notre cas</h2>
-						<img src="images/use-case.png" />
-						<aside class="notes" >Maxime</aside>
-					</section>
-
-					<section>
-						<h3>Search Consumer : Définition du contrat</h3>
-						<img src="images/contract.png" />
-						<aside class="notes" >Maxime</aside>
-					</section>
-
-                    <section data-background="#cef28f">
-                        <h3>Search Consumer : Définition du contrat</h3>
-                        <pre><code class="hljs java">@Pact(provider = "Catalog_Provider",consumer = "Search_Consumer")
-fun getAnExistingProduct(builder: PactDslWithProvider): RequestResponsePact {
-	return builder
-		.uponReceiving("Get a product")
-		.method("GET")
-		.path("/products/1")
-		.willRespondWith()
-		.status(HttpStatus.OK.value())
-		.body(PactDslJsonBody()
-			.numberType("id", 1)
-			.stringType("name", "Shoes")
-			.asBody())
-		.toPact()
-}</code></pre>
-							<aside class="notes" >Maxime</aside>
-					</section>
-					<section data-background="#cef28f">
-						<h3>Contrat généré</h3>
-						<pre><code class="hljs json">{
+						<section data-background="#cef28f">
+							<h3>Contrat généré</h3>
+							<pre><code class="hljs json">{
     "provider": {
         "name": "Catalog_Provider"
     },
@@ -557,50 +457,26 @@ fun getAnExistingProduct(builder: PactDslWithProvider): RequestResponsePact {
 						<img src="images/full-test-9.png" height="300px"/>
 						<aside class="notes" >Maxime</aside>
 					</section>
-					<section data-background="#cef28f">
-						<h2>Consumer Test</h2>
-						<pre>
-							<code class="hljs java">@Test
-    fun shouldFindAProduct() {
-        val products = client.getProduct(1)
-        assertThat(products).isEqualTo(Product(1, "Shoes"))
-    }</code>
-						</pre>
-						<aside class="notes" >Maxime<br/>Maxime enchaine</aside>
+				</section>
+
+				<section>
+					<section>
+						<h3>L'architecture de la plateforme</h3>
+						<img src="images/lab-architecture-2.png" alt="Three service architecture" height="400px">
 					</section>
 
-					<section data-background="#b5d0ff">
-							<h2>Provider Test: Catalog</h2>
-						<img src="images/full-test-17.png" height="300px"/>
-						<aside class="notes">Maxime</aside>
-					</section>
-					<section data-background="#b5d0ff">
-						<h2>Provider Test: Catalog</h2>
-						<pre><code>@SpringBootTest(/*Standard Spring Conf*/)
-@Provider("Catalog_Provider")
-@PactBroker(scheme = "https", host = "magelle.pact.dius.com.au", port="443",
-        authentication = PactBrokerAuth(scheme = "Bearer", username = "xxx"))
-class CatalogContractTest {
-
-    private val providerUrl = "http://localhost:8080"
-
-    @TestTemplate
-    @ExtendWith(PactVerificationInvocationContextProvider::class)
-    fun pactVerificationTestTemplate(context: PactVerificationContext) {
-        context.verifyInteraction()
-    }
-
-    @BeforeEach
-    @Throws(Exception::class)
-    fun before(context: PactVerificationContext) {
-        context.target = HttpTestTarget.fromUrl(URL(providerUrl))
-    }
-}</code></pre>
-						<aside class="notes">Maxime</aside>
+					<section>
+						<h3>A vous</h3>
+						<a href="https://github.com/magelle/devoxx2020-contract-testing">https://github.com/magelle/devoxx2020-contract-testing</a>
+						<br/>
+						<strong>Branche : part2</strong>
 					</section>
 				</section>
 
 				<section>
+					<section>
+						<h2>Conclusion</h2>
+					</section>
 					<section>
 						<h3>Des interactions maintenant</h3>
 							<p class="fragment"><i class="fa fa-check"></i> Déclarées</p>
@@ -612,7 +488,7 @@ class CatalogContractTest {
 					<section>
 						<h3>Ce qui nous permet</h3>
 						<img src="images/micro-services-architecture-tested.png" alt="tout est testé" 
-							 height="500px"/>
+								height="500px"/>
 						<aside class="notes">Maxime<br/>Maxime enchaine</aside>
 					</section>
 					<section>
@@ -653,28 +529,10 @@ class CatalogContractTest {
 						</aside>
 					</section>
 
-					<section>
-						<h3>Les bémols</h3>
-						<ul>
-							<li>Plus de contrats</li>
-							<li>Plus de charge</li>
-							<li>Complexité du versionning</li>
-						</ul>
-						<aside class="notes">
-							Maxime
-						</aside>
-					</section>
 				</section>
 				
 				<section>
 					<h2>Merci</h2>
-				</section>
-
-				<section>
-					<h2>Questions ?</h2>
-					<aside class="notes">
-						Maxime & Maxime
-					</aside>
 				</section>
 
 			</div>
