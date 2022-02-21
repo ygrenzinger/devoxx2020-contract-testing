@@ -63,7 +63,7 @@ In checkout project, the goal are to learn how to use the contract test as stubs
 
 In delivery project:
  - Make test pass in `DeliveryApplicationTests.java` in delivery service to [trigger stub message](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-messaging-consumer)
-
+   - use the `stubTrigger`to trigger the message using the it's name in the contract.
 
 ### Bonus
 
