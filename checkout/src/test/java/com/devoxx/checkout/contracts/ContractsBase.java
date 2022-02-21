@@ -20,7 +20,6 @@ import java.time.temporal.ChronoUnit;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureStubRunner
 @AutoConfigureMessageVerifier
 @DirtiesContext
 public class ContractsBase {

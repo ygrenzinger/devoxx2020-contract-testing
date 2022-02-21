@@ -46,21 +46,23 @@ In inventory project, the goal is to learn how to test APIs and the groovy DSL.
   - then we expect the response to have the status OK (Http 200) with as a body a JSON Book containing a stock field which is an integer, e.g. 92
 - Do mvn install on inventory project for making stub accessible for consumers
 
-In checkout project, the goal are to learn how to use the contract test as stubs (with WireMock) in the consumer and to create a message contract.
+In checkout project, the goal are to learn how to use the contract test as stubs in the consumer and to create a message contract.
 
-- Make `CheckoutApplicationTests.java` tests pass. It's an integration test for the inventory service call to retrieve a book and the the checkout controller.
-- At the top of the class, begin to add [AutoConfigureStubRunner annotation](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-retrieving) with ids of the producer you consume (here inventory). `ids` looks like this : `groupId:artefactId:+:stubs:portNumber`. You need to also configure `stubsMode = StubRunnerProperties.StubsMode.LOCAL`
-- You have an error when consuming the WireMock stub. To fix it, you have have to correctly configure restTemplate. Luckily for you, it's just uncommenting the configuration lines for Accept and Content-Type in `CheckoutApplication.java`
+- Make `CheckoutApplicationTests.java` tests pass. It's an integration test for the inventory service call to retrieve a book and the checkout controller.
+- At the top of the class, begin to add [AutoConfigureStubRunner annotation](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-retrieving) with ids of the producer you consume (here the inventory project). `ids` looks like this : `groupId:artefactId:+:stubs:portNumber`. You need to also configure `stubsMode = StubRunnerProperties.StubsMode.LOCAL`
+- You can now run the test `CheckoutApplicationTests`
+- You have an error when consuming the stub. To fix it, you have have to correctly configure restTemplate. Luckily for you, it's just uncommenting the configuration lines for Accept and Content-Type in `CheckoutApplication.java`
 - You can also remove the @Disabled on test `should_checkout_order`
 - Implement the `shouldSendOrderToDelivery` a contract for a message which is created in method [see Output Triggered by a Method](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-output-triggered-method)
-  - Uncomment the MessageVerifier injection
+  - Uncomment the MessageVerifier injection dans `ContractsBase.java`
   - Implement `sendOrder` function to send a message to delivery service (you can use the delivery interface)
   - We want to verify that if you trigger `sendOrder` you will have the following output message JSON body :
     - the bookId field which is the UUID, e.g: "d4d37e73-77a0-4616-8bd2-5ed983d45d14"
     - a quantity field which is a number, e.g: 2
     - a clientId field which is a string, e.g: "yannick"
     - and createdAt field the current date time - You can use dependency injection or matchers ;)
-- mvn install for making stub accessible for consumer
+- You can now run again the test `CheckoutApplicationTests` to check that the message is sent
+- mvn install for making stub accessible for the message consumer
 
 In delivery project:
 
