@@ -20,30 +20,30 @@ You can read a bit the [introduction to Spring Cloud Contract](https://cloud.spr
 
 In inventory project, the goal is to learn how to test APIs and the groovy DSL. 
 
-- Go to Maven pom.xml and uncomment the Spring Cloud Contract test dependancy and plugin [doc here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/) 
+- Go to Maven __pom.xml__ and uncomment the Spring Cloud Contract test dependancy and plugin [doc here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/) 
 - A base testing class is mandatory and configure the parent class of generated test classes. It handles the context needed for the tests. You have to configure the location of base contract class available here `com.devoxx.inventory.contracts.ContractsBase` by configuring the maven plugin with line `<baseClassForTests>` (see here)[https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/junit.html].
-- run `mvn clean test` to see the plugin generate tests in this class `_target/generated-test-sources_/.../ContractVerifierTest.java`. You can run it as a typical java test class.
+- run `mvn clean test` to see the plugin generate tests in this class `_target/generated-test-sources_/org/springframework/cloud/contract/verifier/tests/ContractVerifierTest.java`.
 - The contract `shouldRetrieveAllBooks` should pass now. To better understand, the [Groovy DSL documentation is here](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl)
-- Uncomment the test `shouldRetrieveBook`. You need to generate again the contract tests. to go fast, use the `spring-cloud-contract:generateTests` goal of plugin directly. It fails due to wrong url in the controller. You can easily correct it. You can also see the use of [dynamic and regex properties](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-dynamic-properties)
-- **important** : understand the _$(consumer/stub/client(...), producer/test/server(...))_
-- _info_ : You can test only the relevant fields in the response.
-- _info_ : to directly generate the contract tests, use the `spring-cloud-contract:generateTests` goal of plugin directly to avoid running full maven build.
-- _info_ : For very complex use case, you can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)
+- Uncomment the test `shouldRetrieveBook`. You need to generate again the contract tests. to go fast, use `mvn spring-cloud-contract:generateTests` directly, then run `mvn test` to run the test (or execute `ContractVerifierTest` directly in your IDE). It fails due to wrong url in the controller. You can easily correct it. You can also see the use of [dynamic and regex properties](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-dynamic-properties)
+- **important** : Look how the url is defined, there is two parts : consumer and producer
+  - Read more [here](https://docs.spring.io/spring-cloud-contract/docs/current/reference/html/project-features.html#contract-dsl-regex)
+- __info__ : You can test only the relevant fields in the response.
+- __info__ : to directly generate the contract tests, use `mvn spring-cloud-contract:generateTests` directly to avoid running full maven build.
+- __info__ : For very complex use case, you can also [reference the parameters from the request](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#contract-dsl-referencing-request-from-response)
 - Uncomment the test `shouldCreateBookIntoInventory` and make it test the create POST endpoint. The problem here is the random UUID. You can either control the UUID generator in the test or use matchers.
   - We want to verify that we receive a POST on /v1/books with as body a JSON Book containing :
     - a name field which is a string, e.g: "Clean code"
     - a price field which is a number, e.g: 49.99
     - and a stock field which is an integer, e.g. 45
-  - then we expect the response to have the status OK (Http 200) with as a body a JSON Book containing :
+  - then we expect the response to have the status Created (Http 201) with as a body a JSON Book containing :
     
         - an id filed which is an UUID, e.g : "48bd1c8a-4fff-4db7-8967-9a59791415bd"
         - a name field which is a string, e.g: "Clean code"
         - a price field which is a number, e.g: 49.99
         - and a stock field which is an integer, e.g. 45
-- Create the contract `shouldReduceStockInInventory` and make it test the reduce stock POST endpoint. You also have to uncomment it to show some ATDD practices :)
-  - We want to verify that we receive a POST on /v1/books/d4d37e73-77a0-4616-8bd2-5ed983d45d14/stock/reduce/2 aka reducing by 2 the number of Java books
+- Create the contract `shouldReduceStockInInventory` and make it test the reduce stock POST endpoint. You also will have to uncomment it to show some ATDD practices :)
+  - we want to verify that we receive a POST on /v1/books/d4d37e73-77a0-4616-8bd2-5ed983d45d14/stock/reduce/2 aka reducing by 2 the number of Java books
   - then we expect the response to have the status OK (Http 200) with as a body a JSON Book containing a stock field which is an integer, e.g. 92
-- _info_ : You can run and tests your stub with WireMock and something like Postman by using `spring-cloud-contract:generateStubs` goal
 - Do mvn install on inventory project for making stub accessible for consumers
 
 In checkout project, the goal are to learn how to use the contract test as stubs (with WireMock) in the consumer and to create a message contract.
