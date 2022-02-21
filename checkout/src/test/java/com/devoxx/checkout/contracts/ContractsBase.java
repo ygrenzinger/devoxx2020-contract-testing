@@ -24,7 +24,6 @@ import java.time.temporal.ChronoUnit;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-//@AutoConfigureStubRunner - TO_COMPLETE
 @AutoConfigureMessageVerifier
 @DirtiesContext
 public class ContractsBase {
