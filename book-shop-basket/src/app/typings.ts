@@ -1,6 +1,6 @@
 export class Order {
   bookId: string;
-  number: number;
+  quantity: number;
   clientId: string;
 }
 

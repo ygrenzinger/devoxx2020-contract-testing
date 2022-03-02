@@ -40,7 +40,7 @@ describe('CheckoutServiceContract', () => {
 
   const order: Order = {
     bookId: '47baae30-09a7-41a4-9593-b181316cd1a2',
-    number: 5,
+    quantity: 5,
     clientId: '0fcfd742-0f59-4843-90b1-66504ed10468'
   };
 
