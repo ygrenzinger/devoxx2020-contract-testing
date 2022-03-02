@@ -203,19 +203,16 @@ In this file, you'll see, in order :
 The setup :
 
 ```
-beforeAll(async () => {
+  // Setup Pact mock server for this service
+  beforeAll(async () => {
 
-	// Setup Pact and start Backend stub
     provider = await new PactWeb({
-      consumer: 'book-shop-basket',
-      provider: 'inventory-service',
       port: 1234
     });
 
     // required for slower CI environments
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-	// Remove all all existing interactions
     // Required if run with `singleRun: false`
     await provider.removeInteractions();
   });
@@ -229,7 +226,7 @@ The after test vérifications
     await provider.verify();
   });
 
-  // Create the contract
+  // Create contract
   afterAll(async () => {
     await provider.finalize();
   });
@@ -238,29 +235,23 @@ The after test vérifications
 The definition of the interaction
 
 ```
-eforeAll((done) => {
-      provider.addInteraction({
-        state: ``,
-        uponReceiving: 'Get books inventory',
-        withRequest: {
-          method: 'GET',
-          path: '/v1/books'
-        },
-        willRespondWith: {
-          status: 200,
-          body: Matchers.somethingLike([
-            {
-              id: 'e72ad291-5818-4e92-9344-a8050656c9b2',
-              name: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-              price: 30
-            }
-          ]),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      }).then(done, error => done.fail(error));
-    });
+beforeAll((done) => {
+  provider.addInteraction({
+    state: ``,
+    uponReceiving: 'Get books inventory',
+    withRequest: {
+      method: 'GET',
+      path: '/v1/books'
+    },
+    willRespondWith: {
+      status: 200,
+      body: Matchers.somethingLike(books),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  }).then(done, error => done.fail(error));
+});
 ```
 
 The test of the client.
