@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Matchers, PactWeb } from '@pact-foundation/pact-web';
-import { HttpClientModule } from "@angular/common/http";
-import { InventoryService } from "./inventory.service";
+import { HttpClientModule } from '@angular/common/http';
+import { InventoryService } from './inventory.service';
 import { Book } from './typings';
 
 describe('InventoryServiceContract', () => {
@@ -11,8 +11,6 @@ describe('InventoryServiceContract', () => {
   beforeAll(async () => {
 
     provider = await new PactWeb({
-      consumer: 'book-shop-basket',
-      provider: 'inventory-service',
       port: 1234
     });
 
