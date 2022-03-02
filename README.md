@@ -144,9 +144,9 @@ Don't worry we will guide you.
 No action required for you here. We already include the dependencies : 
 
 ```
-"@pact-foundation/karma-pact": "^2.3.1",
-"@pact-foundation/pact-node": "^10.4.0",
-"@pact-foundation/pact-web": "^9.7.0",
+"@pact-foundation/karma-pact": "^3.1.0",
+"@pact-foundation/pact-node": "^10.17.1",
+"@pact-foundation/pact-web": "^9.17.2",
 ```
 
 That's it !!
