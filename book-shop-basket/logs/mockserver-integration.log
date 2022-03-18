@@ -1,0 +1,210 @@
+I, [2022-03-02T22:25:26.310065 #25834]  INFO -- : Received OPTIONS request for mock service administration endpoint POST /interactions. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:26.313072 #25834]  INFO -- : Registered expected interaction POST /v1/checkouts
+D, [2022-03-02T22:25:26.313328 #25834] DEBUG -- : {
+  "description": "Checkout an order",
+  "request": {
+    "method": "POST",
+    "path": "/v1/checkouts",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+      "quantity": 5,
+      "clientId": "0fcfd742-0f59-4843-90b1-66504ed10468"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "json_class": "Pact::SomethingLike",
+      "contents": {
+        "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+        "quantity": 5,
+        "clientId": "0fcfd742-0f59-4843-90b1-66504ed10468"
+      }
+    }
+  },
+  "metadata": null
+}
+I, [2022-03-02T22:25:26.319990 #25834]  INFO -- : Received request POST /v1/checkouts
+D, [2022-03-02T22:25:26.320227 #25834] DEBUG -- : {
+  "path": "/v1/checkouts",
+  "query": "",
+  "method": "post",
+  "body": {
+    "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+    "quantity": 5,
+    "clientId": "0fcfd742-0f59-4843-90b1-66504ed10468"
+  },
+  "headers": {
+    "Content-Length": "112",
+    "Content-Type": "application/json",
+    "X-Forwarded-Host": "localhost:9877",
+    "X-Forwarded-Proto": "http",
+    "X-Forwarded-Port": "9877",
+    "X-Forwarded-For": "127.0.0.1",
+    "Cookie": "io=IThcnmKoINMiVXnsAAAA",
+    "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "http://localhost:9877/context.html",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Origin": "http://localhost:9877",
+    "Sec-Ch-Ua-Platform": "\"macOS\"",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.109 Safari/537.36",
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Accept": "application/json, text/plain, */*",
+    "Sec-Ch-Ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"98\", \"Google Chrome\";v=\"98\"",
+    "Connection": "close",
+    "Host": "localhost:9877",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2022-03-02T22:25:26.321163 #25834]  INFO -- : Found matching response for POST /v1/checkouts
+D, [2022-03-02T22:25:26.321211 #25834] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "json_class": "Pact::SomethingLike",
+    "contents": {
+      "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+      "quantity": 5,
+      "clientId": "0fcfd742-0f59-4843-90b1-66504ed10468"
+    }
+  }
+}
+I, [2022-03-02T22:25:26.324522 #25834]  INFO -- : Received OPTIONS request for mock service administration endpoint GET /interactions/verification. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:26.326547 #25834]  INFO -- : Verifying - interactions matched
+I, [2022-03-02T22:25:26.328860 #25834]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:26.331502 #25834]  INFO -- : Received OPTIONS request for mock service administration endpoint POST /pact. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:26.333726 #25834]  INFO -- : Writing pact for checkout-service to /Users/max/workspace/test-devoxx/devoxx2020-contract-testing/book-shop-basket/pacts/book-shop-basket-checkout-service.json
+I, [2022-03-02T22:25:26.337605 #25834]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:28.312795 #25834]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:35.359751 #25834]  INFO -- : Received OPTIONS request for mock service administration endpoint DELETE /interactions. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:35.361443 #25834]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:35.364260 #25834]  INFO -- : Registered expected interaction POST /v1/checkouts
+D, [2022-03-02T22:25:35.364357 #25834] DEBUG -- : {
+  "description": "Checkout an order",
+  "request": {
+    "method": "POST",
+    "path": "/v1/checkouts",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "bookId": "47baae30-09a7-41a4-9593-b181316cd1a2",
+      "quantity": 5,
+      "clientId": "0fcfd742-0f59-4843-90bI, [2022-03-02T22:25:37.410500 #25828]  INFO -- : Received OPTIONS request for mock service administration endpoint DELETE /interactions. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:37.412610 #25828]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:37.415293 #25828]  INFO -- : Registered expected interaction GET /v1/books
+D, [2022-03-02T22:25:37.415357 #25828] DEBUG -- : {
+  "description": "Get books inventory",
+  "request": {
+    "method": "GET",
+    "path": "/v1/books"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "json_class": "Pact::SomethingLike",
+      "contents": [
+        {
+          "id": "e72ad291-5818-4e92-9344-a8050656c9b2",
+          "name": "Clean Code: A Handbook of Agile Software Craftsmanship",
+          "price": 30
+        }
+      ]
+    }
+  },
+  "metadata": null
+}
+I, [2022-03-02T22:25:37.419571 #25828]  INFO -- : Received request GET /v1/books
+D, [2022-03-02T22:25:37.419654 #25828] DEBUG -- : {
+  "path": "/v1/books",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "X-Forwarded-Host": "localhost:9877",
+    "X-Forwarded-Proto": "http",
+    "X-Forwarded-Port": "9877",
+    "X-Forwarded-For": "127.0.0.1",
+    "Cookie": "io=IGugMm7JGbntAwqXAAAB",
+    "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "http://localhost:9877/context.html",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Ch-Ua-Platform": "\"macOS\"",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.109 Safari/537.36",
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Accept": "application/json, text/plain, */*",
+    "Sec-Ch-Ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"98\", \"Google Chrome\";v=\"98\"",
+    "Connection": "close",
+    "Host": "localhost:9877",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2022-03-02T22:25:37.419742 #25828]  INFO -- : Found matching response for GET /v1/books
+D, [2022-03-02T22:25:37.419783 #25828] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "json_class": "Pact::SomethingLike",
+    "contents": [
+      {
+        "id": "e72ad291-5818-4e92-9344-a8050656c9b2",
+        "name": "Clean Code: A Handbook of Agile Software Craftsmanship",
+        "price": 30
+      }
+    ]
+  }
+}
+I, [2022-03-02T22:25:37.434068 #25828]  INFO -- : Received OPTIONS request for mock service administration endpoint GET /interactions/verification. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:37.435621 #25828]  INFO -- : Verifying - interactions matched
+I, [2022-03-02T22:25:37.437571 #25828]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:37.439675 #25828]  INFO -- : Received OPTIONS request for mock service administration endpoint POST /pact. Returning CORS headers: {"Access-Control-Allow-Origin"=>"http://localhost:9877", "Access-Control-Allow-Headers"=>"content-type,x-pact-mock-service", "Access-Control-Allow-Methods"=>"DELETE, POST, GET, HEAD, PUT, TRACE, CONNECT, PATCH"}.
+I, [2022-03-02T22:25:37.441399 #25828]  INFO -- : Writing pact for inventory-service to /Users/max/workspace/test-devoxx/devoxx2020-contract-testing/book-shop-basket/pacts/book-shop-basket-inventory-service.json
+I, [2022-03-02T22:25:37.443917 #25828]  INFO -- : Cleared interactions
+I, [2022-03-02T22:25:37.455277 #25828]  INFO -- : Received request GET /v1/books
+D, [2022-03-02T22:25:37.455386 #25828] DEBUG -- : {
+  "path": "/v1/books",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "X-Forwarded-Host": "localhost:9877",
+    "X-Forwarded-Proto": "http",
+    "X-Forwarded-Port": "9877",
+    "X-Forwarded-For": "127.0.0.1",
+    "Cookie": "io=IGugMm7JGbntAwqXAAAB",
+    "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "http://localhost:9877/context.html",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Ch-Ua-Platform": "\"macOS\"",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.109 Safari/537.36",
+    "Sec-Ch-Ua-Mobile": "?0",
+    "Accept": "application/json, text/plain, */*",
+    "Sec-Ch-Ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"98\", \"Google Chrome\";v=\"98\"",
+    "Connection": "close",
+    "Host": "localhost:9877",
+    "Version": "HTTP/1.1"
+  }
+}
+E, [2022-03-02T22:25:37.455409 #25828] ERROR -- : No matching interaction found for GET /v1/books
+E, [2022-03-02T22:25:37.455419 #25828] ERROR -- : Interaction diffs for that route:
+E, [2022-03-02T22:25:37.455428 #25828] ERROR -- : 

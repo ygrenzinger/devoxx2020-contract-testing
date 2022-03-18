@@ -30,3 +30,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Mockserver integration
+**/logs/*.log
+
+### Pact generated failes
+**/pacts/*

@@ -1,0 +1,40 @@
+{
+  "consumer": {
+    "name": "book-shop-basket"
+  },
+  "provider": {
+    "name": "inventory-service"
+  },
+  "interactions": [
+    {
+      "description": "Get books inventory",
+      "request": {
+        "method": "GET",
+        "path": "/v1/books"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "e72ad291-5818-4e92-9344-a8050656c9b2",
+            "name": "Clean Code: A Handbook of Agile Software Craftsmanship",
+            "price": 30
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}
