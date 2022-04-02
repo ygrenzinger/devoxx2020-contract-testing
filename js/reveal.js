@@ -26,7 +26,7 @@ import {
 } from './utils/constants.js'
 
 // The reveal.js version
-export const VERSION = '4.2.1';
+export const VERSION = '4.3.1';
 
 /**
  * reveal.js
@@ -898,31 +898,12 @@ export default function( revealElement, options ) {
 					transformSlides( { layout: '' } );
 				}
 				else {
-					// Zoom Scaling
-					// Content remains crisp no matter how much we scale. Side
-					// effects are minor differences in text layout and iframe
-					// viewports changing size. A 200x200 iframe viewport in a
-					// 2x zoomed presentation ends up having a 400x400 viewport.
-					if( scale > 1 && Device.supportsZoom && window.devicePixelRatio < 2 ) {
-						dom.slides.style.zoom = scale;
-						dom.slides.style.left = '';
-						dom.slides.style.top = '';
-						dom.slides.style.bottom = '';
-						dom.slides.style.right = '';
-						transformSlides( { layout: '' } );
-					}
-					// Transform Scaling
-					// Content layout remains the exact same when scaled up.
-					// Side effect is content becoming blurred, especially with
-					// high scale values on ldpi screens.
-					else {
-						dom.slides.style.zoom = '';
-						dom.slides.style.left = '50%';
-						dom.slides.style.top = '50%';
-						dom.slides.style.bottom = 'auto';
-						dom.slides.style.right = 'auto';
-						transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
-					}
+					dom.slides.style.zoom = '';
+					dom.slides.style.left = '50%';
+					dom.slides.style.top = '50%';
+					dom.slides.style.bottom = 'auto';
+					dom.slides.style.right = 'auto';
+					transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
 				}
 
 				// Select all slides, vertical and horizontal
@@ -963,6 +944,8 @@ export default function( revealElement, options ) {
 					});
 				}
 			}
+
+			dom.viewport.style.setProperty( '--slide-scale', scale );
 
 			progress.update();
 			backgrounds.updateParallax();
@@ -2743,6 +2726,9 @@ export default function( revealElement, options ) {
 
 		// Helper method, retrieves query string as a key:value map
 		getQueryHash: Util.getQueryHash,
+
+		// Returns the path to the current slide as represented in the URL
+		getSlidePath: location.getHash.bind( location ),
 
 		// Returns reveal.js DOM elements
 		getRevealElement: () => revealElement,

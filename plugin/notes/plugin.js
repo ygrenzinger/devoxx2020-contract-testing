@@ -1,6 +1,6 @@
 import speakerViewHTML from './speaker-view.html';
 
-import marked from 'marked';
+import { marked } from 'marked';
 
 /**
  * Handles opening of and synchronization with the reveal.js
@@ -67,13 +67,18 @@ const Plugin = () => {
 		*/
 	function connect() {
 
+		const presentationURL = deck.getConfig().url;
+
+		const url = typeof presentationURL === 'string' ? presentationURL :
+								window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.search;
+
 		// Keep trying to connect until we get a 'connected' message back
 		connectInterval = setInterval( function() {
 			speakerWindow.postMessage( JSON.stringify( {
 				namespace: 'reveal-notes',
 				type: 'connect',
-				url: window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.search,
-				state: deck.getState()
+				state: deck.getState(),
+				url
 			} ), '*' );
 		}, 500 );
 
@@ -198,8 +203,15 @@ const Plugin = () => {
 					// that we remain connected to the notes even if the presentation
 					// is reloaded.
 					window.addEventListener( 'message', event => {
-						if( !speakerWindow ) {
-							let data = JSON.parse( event.data );
+
+						if( !speakerWindow && typeof event.data === 'string' ) {
+							let data;
+
+							try {
+								data = JSON.parse( event.data );
+							}
+							catch( error ) {}
+
 							if( data && data.namespace === 'reveal-notes' && data.type === 'heartbeat' ) {
 								reconnectSpeakerWindow( event.source );
 							}
