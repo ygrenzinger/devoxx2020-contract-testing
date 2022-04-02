@@ -71,7 +71,6 @@ public class CheckoutApplicationTests {
         //when
         Book book = inventory.retrieveBook("d4d37e73-77a0-4616-8bd2-5ed983d45d14");
         assertThat(book.getStock()).isEqualTo(100);
-
     }
 
 }
