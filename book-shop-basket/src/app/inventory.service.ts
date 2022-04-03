@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from "rxjs/internal/Observable";
+import { Observable } from 'rxjs/internal/Observable';
 import { Book } from './typings';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class InventoryService {
   }
 
   allBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.serviceUrl)
+    return this.http.get<Book[]>(this.serviceUrl);
   }
 
 }

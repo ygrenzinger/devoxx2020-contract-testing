@@ -48,7 +48,7 @@ describe('CheckoutServiceContract', () => {
 
     beforeAll((done) => {
       provider.addInteraction({
-        state: ``,
+        state: 'an order',
         uponReceiving: 'Checkout an order',
         withRequest: {
           method: 'POST',
