@@ -50,7 +50,7 @@ describe('InventoryServiceContract', () => {
 
     beforeAll((done) => {
       provider.addInteraction({
-        state: ``,
+        state: 'several products',
         uponReceiving: 'Get books inventory',
         withRequest: {
           method: 'GET',
