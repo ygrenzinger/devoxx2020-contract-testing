@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@PactTestFor(providerName = "inventory", port = "8080")
+@PactTestFor(providerName = "inventory-service", port = "8080")
 @ExtendWith(PactConsumerTestExt.class)
 @ContextConfiguration(classes = { CheckoutApplication.class })
 class InventoryContractTest {
@@ -28,7 +28,7 @@ class InventoryContractTest {
     @Autowired
     private InventoryClient inventoryClient;
 
-    @Pact(provider = "inventory", consumer = "checkout")
+    @Pact(provider = "inventory-service", consumer = "checkout-service")
     public V4Pact getBookContract(PactBuilder builder) {
         return builder.usingLegacyDsl()
                 .given("A product")

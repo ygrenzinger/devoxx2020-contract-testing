@@ -89,6 +89,16 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>au.com.dius.pact.provider</groupId>
+				<artifactId>maven</artifactId>
+				<version>4.1.11</version>
+				<configuration>
+					<pactBrokerUrl>https://magelle.pact.dius.com.au</pactBrokerUrl>
+					<pactBrokerToken>ZOhnNi5ai-J1jXja2P7ytg</pactBrokerToken> <!-- Replace TOKEN with the actual token -->
+					<pactBrokerAuthenticationScheme>Bearer</pactBrokerAuthenticationScheme>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
