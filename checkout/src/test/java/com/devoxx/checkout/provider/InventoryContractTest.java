@@ -31,7 +31,6 @@ class InventoryContractTest {
     @Pact(provider = "inventory-service", consumer = "checkout-service")
     public V4Pact getBookContract(PactBuilder builder) {
         return builder.usingLegacyDsl()
-                .given("A product")
                 .uponReceiving("Get a single product")
                     .matchPath("/v1/books/\\d+")
                     .method("GET")
