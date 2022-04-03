@@ -107,6 +107,9 @@ You now have Spring Cloud Contract configured in a consumer driven way !
 
 That's why we will use [Pact](https://docs.pact.io/). Pact is quite similar to Spring Cloud Contract but really enfore the consumer driven principle.
 
+#### The consumer Java doc
+[Pact](https://docs.pact.io/implementation_guides/jvm/consumer/junit5)
+
 #### The front end
 
 First of all you can go in ```book-shop-basket```. This is our frontend.
