@@ -41,12 +41,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
@@ -55,8 +49,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-test-support</artifactId>
+			<artifactId>spring-cloud-stream</artifactId>
+			<type>test-jar</type>
 			<scope>test</scope>
+			<classifier>test-binder</classifier>
 		</dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -91,7 +87,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <testFramework>JUNIT5</testFramework>
-                    <!-- TO COMPLETE -->
+					<baseClassForTests>com.devoxx.checkout.contracts.ContractsBase</baseClassForTests>
                 </configuration>
             </plugin>
 			<plugin>
