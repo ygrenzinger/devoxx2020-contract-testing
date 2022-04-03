@@ -2,6 +2,7 @@ package com.devoxx.checkout;
 
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junitsupport.Provider;
+import au.com.dius.pact.provider.junitsupport.State;
 import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import au.com.dius.pact.provider.spring.junit5.PactVerificationSpringProvider;
 import com.devoxx.checkout.domain.Cashier;
@@ -27,7 +28,7 @@ public class ContractVerificationTest {
     @MockBean
     private Cashier cashier;
 
-    @BeforeEach
+    @State("an order")
     public void before() {
         when(cashier.checkoutNow(any())).thenReturn(
                 new ValidatedOrder("39ad34b5-e649-472d-ad5c-aab886a664e4",
