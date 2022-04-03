@@ -20,7 +20,7 @@ public class Book {
     }
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public Book(@JsonProperty("name") String name, @JsonProperty("price") BigDecimal price, @JsonProperty("int") int stock) {
+    public Book(@JsonProperty("name") String name, @JsonProperty("price") BigDecimal price, @JsonProperty("stock") int stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
