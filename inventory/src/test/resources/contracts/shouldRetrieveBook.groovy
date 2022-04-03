@@ -19,7 +19,7 @@ Contract.make {
         body(
                 "id": anyUuid(),
                 "name": "Java",
-                "price": "19.9",
+                "price": 19.9,
                 "stock": 100
         )
         headers {
