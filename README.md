@@ -268,9 +268,11 @@ void givenAProduct() {
  - If you look in yout pact broker instance, you should see that the contract is now tagged with a __Success__
  - This means the last provider verification was successful.
 
-#### The front end
 
-First of all you can go in ```book-shop-basket```. This is our frontend.
+
+#### Another contract, in JavaScript (or Typescript actually)
+
+First of all open ```book-shop-basket```. This is our frontend.
 
 Book-Shop-Basket is the basket of our book shop. Its role is to present all books to the user allow it to select some and checkout the basket.
 
@@ -279,7 +281,6 @@ The ```book-shop-basket``` will need to get all available books from the ```inve
 We will need two contracts : 
 
 - get all book from inventory
-
 - send the bask for checkout
 
 As we are in consumer driven contract testing the contracts will be defined by ... the consumer. ```book-shop-basket``` in our case.
@@ -291,11 +292,8 @@ As all tool Pact needs some set up.
 Here we will need to :
 
 - Add the Pact dependencies
-
 - Configure karma
-
 - Write the contract
-
 - Write the test of the client
 
 Don't worry we will guide you.
@@ -304,7 +302,7 @@ Don't worry we will guide you.
 
 No action required for you here. We already include the dependencies : 
 
-```
+```json
 "@pact-foundation/karma-pact": "^3.1.0",
 "@pact-foundation/pact-node": "^10.17.1",
 "@pact-foundation/pact-web": "^9.17.2",
@@ -324,7 +322,7 @@ Uncomment the ```pact``` and ```proxies``` entries.
 
 You should see something such as : 
 
-```
+```js
 pact: [
    {
      cors: true,
@@ -363,7 +361,7 @@ In this file, you'll see, in order :
 
 The setup :
 
-```
+```js
   // Setup Pact mock server for this service
   beforeAll(async () => {
 
@@ -381,7 +379,7 @@ The setup :
 
 The after test vérifications
 
-```
+```js
   // Verify test
   afterEach(async () => {
     await provider.verify();
@@ -395,7 +393,7 @@ The after test vérifications
 
 The definition of the interaction
 
-```
+```js
 beforeAll((done) => {
   provider.addInteraction({
     state: ``,
@@ -417,7 +415,7 @@ beforeAll((done) => {
 
 The test of the client.
 
-```
+```js
 it('should get book inventory', (done) => {
       const inventoryService: InventoryService = TestBed.get(InventoryService);
       inventoryService.allBooks().subscribe(response => {
@@ -432,7 +430,31 @@ it('should get book inventory', (done) => {
 You can run the tests with ```npm test``` or ```yarn test```.
 This should create the contracts files in the ```pacts``` folder.
 
-#### Write a contract
+##### Publish the contract
+
+Open the `publish-pact.ts` file.
+
+This is a small script which will deliver the congtracts to the pact broker.
+
+You just have to change the pact broker URL and token to make it work : 
+```ts
+let options = {
+  provider: 'Catalog_Provider',
+  pactFilesOrDirs: [path.resolve(__dirname, 'pacts')],
+  pactBroker: 'https://[Your pact broker]',
+  pactBrokerToken: '[Your token]',
+  consumerVersion: '1.0.0'
+};
+```
+
+Now you can publish the contract by running : `npm publish-pacts` or `yarn publish-pacts`.
+
+You should be able to see your contracts in your pact broker.
+
+You can now go in the `inventory` service again and run the test `ContractVerificationTest`.
+You should see that two contracts are now being verified.
+
+#### Write yet a contract 
 
 Now we to send the order to the ```checkout``` service.
 To do that we will write a contract between ```book-shop-basket``` and ```checkout``` service
@@ -446,5 +468,7 @@ This interaction will be :
   - a clientId field which is a string, e.g: "yannick"
 
 Run ``` npm test``` or ```yarn test``` to generate the pact files.
+
+You can publish it and implement the contract verification in the `checkout` service.
 
 **Bravo ! You have successfully reached the end of workshop**
