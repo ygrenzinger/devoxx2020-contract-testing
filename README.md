@@ -85,30 +85,188 @@ In checkout project:
 
 In opposition to part one, part two will be about **consumer driven contract testing**. As the name says, in consumer driven contract testing, the contract is defined by the consumer. This means, each consumer will explain to the provider which service it needs.
 
-### Spring Cloud Contract - Consumer Driven.
-
-First we will configure Spring Cloud Contract in a consumer driven way. 
-
-You have to checkout "part2" branch and initialise a repository for contracts. To initialize the local Git repository, you can use the Golang tool provided in the `./tool` directory and associated OS. It will create a repository, initialize it with some contracts in a consumer driven way and give you back the url to use. You can also read the associated [README](./tool/README.md).
-
-Next you can use the repo url to configure the Spring Cloud Contract maven plugin in inventory and checkout projects [See how to configure here](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract-maven-plugin/configs.html). 
-
-Run `mvn clean spring-cloud-contract:generateTests` to see the generated test files (one for each consumer) in `target/generated-test-sources`.
-
-You also have to correctly configure the consumers using the Git repository [See how to configure here](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/project-features.html#features-stub-runner-stubs-per-consumer): 
-- in checkout application.yml
-- in delivery DeliveryApplicationTests.yml
-
-You now have Spring Cloud Contract configured in a consumer driven way !
-
 ### Pact
 
 [Spring cloud contract](https://spring.io/projects/spring-cloud-contract) is a nice tool but it's only for Java / Spring Cloud providers.
 
-That's why we will use [Pact](https://docs.pact.io/). Pact is quite similar to Spring Cloud Contract but really enfore the consumer driven principle.
+That's why we will use [Pact](https://docs.pact.io/). Pact is quite similar to Spring Cloud Contract but really enforce the consumer driven principle.
 
 #### The consumer Java doc
 [Pact](https://docs.pact.io/implementation_guides/jvm/consumer/junit5)
+
+#### A first consumer : the checkout service
+
+##### Write a contract
+
+Open the ```checkout``` service. 
+- open the pom.xml file
+- uncomment the following section : 
+```xml
+		<dependency>
+			<groupId>au.com.dius.pact.consumer</groupId>
+			<artifactId>junit5</artifactId>
+			<version>4.3.6</version>
+		</dependency>
+```
+
+Now we will write the contract 
+- open ```InventoryContractTest```class which contains a start
+- uncomment the mandatory annotation ```@PactTestFor(providerName = "inventory-service", port = "8080")``` which tell that we will test against the provider named ```ìventory-service```
+- uncomment the ```getBookContract``` method : 
+```java
+@Pact(provider = "inventory-service", consumer = "checkout-service")
+    public V4Pact getBookContract(PactBuilder builder) {
+        return builder.usingLegacyDsl()
+                .given("A product") // This is the state
+                .uponReceiving("Get a single product")
+                .matchPath("/v1/books/.+")
+                .method("GET")
+                .willRespondWith()
+                .status(200)
+                .body(new PactDslJsonBody()
+                    .stringType("name", "maxime") // seams implementation is not finished yet
+                )
+                .toPact(V4Pact.class);
+    }
+```
+
+You should recognize most of the names here. 
+So we expect a `HTTP GET` on `/v1/books/{id}` to return a `HTTP 200` with a json body.
+
+The json body is not quite finished.
+
+Implement the matcher so that the contract expect this kind of body : 
+```json
+{ 
+  "id": "cc171e35-2426-4663-adef-954f42af12fe", 
+  "name": "Domain Driven Design",
+  "price": 49.90,
+  "stock": 12
+}
+```
+Please not that this is an exemple, you should test the structure.
+
+You'll find some documentationa bout matchers [here](https://docs.pact.io/implementation_guides/jvm/consumer/junit#building-json-bodies-with-pactdsljsonbody-dsl)
+
+Now you can run the the test (in your IDE or with `mvn test`) to see the contract created in `target/pacts`.
+You should find a file named : `checkout-service-inventory-service.json`.
+This file is the exchange format of the contract.
+
+Now is time to see whether or not our consumer was properly programmed.
+
+##### Test the contract
+
+Now that we have a contract it's time to test it against the consumer.
+Yes witg consumer driven contract test we begin with the consumer.
+
+Still in the `InventoryContractTest` you'll find a test, just below the contract definition :
+```Java
+@Test
+void test() {
+    Book book = inventoryClient.retrieveBook("15");
+    // Verify the content of book
+}
+```
+
+Our inventory client is called and it's result is put in the `book` variable. But this one is not tested.
+
+Please add the verification that the `book` variable contains the values of the contract.
+
+Run the test, everything should works properly.
+
+#### Publish the contract
+
+Now we will go to the provider ad a test to check that it's verify the contract as well.
+
+But first we need to make the contract available.
+
+##### Create a pactflow.io account
+
+To store and share contracts between services, we will use the [pact broker](https://docs.pact.io/pact_broker).
+To ease setup here we will ask you to create an account in [pactflow.io](pactflow.io)
+
+This is totally free don't worry.
+
+Go to [pactflow.io](pactflow.io), click on the [Try for free](https://pactflow.io/try-for-free?utm_source=homepage&utm_content=header) button and follow the process until you get your own pact broker instance.
+
+##### Publish your contract
+
+First we need to add a maven plugin.  Go in the `pom.xml` file and uncoment the following plugin : 
+```xml
+<plugin>
+  <groupId>au.com.dius.pact.provider</groupId>
+  <artifactId>maven</artifactId>
+  <version>4.1.11</version>
+  <configuration>
+    <pactBrokerUrl>https://[my instance].pactflow.io</pactBrokerUrl>
+    <pactBrokerToken>[my api key]</pactBrokerToken> <!-- Replace TOKEN with the actual token -->
+    <pactBrokerAuthenticationScheme>Bearer</pactBrokerAuthenticationScheme>
+  </configuration>
+</plugin>
+```
+
+You'll have to replace both the pact broker URL which should look like : `https://XXX.pactflow.io`.
+
+You also need to give the key to allow the plugin to connect and send the contracts.
+This api key is available in the settings of your pact broker instance.
+Make sure to use the __Read/Write token__ otherwise no contract will be saved.
+
+Everything is now ready.
+By running `mvn pact:publish` your contract will be sent to the pact broker.
+You are now able to see your new contract in your own pact broker.
+
+#### Verify the provider : inventory-service
+
+Open the `inventory` project.
+
+This is our provider. You can see the `BookController` class which declare some endpoints.
+
+First we have to add the dependency. Go in the pom.xml and uncomment the pact provider dependency : 
+```xml
+<dependency>
+  <groupId>au.com.dius.pact.provider</groupId>
+  <artifactId>junit5spring</artifactId>
+  <version>4.3.5</version>
+  <scope>test</scope>
+</dependency>
+```
+This a package dedicated to works with spring but you can find one only for junit5 [here](https://docs.pact.io/implementation_guides/jvm/provider/junit5spring)
+
+Second we have to tell pact where to get the contracts it should verify.
+- Open the configuration file `src/test/resources/application.yml`
+- uncomment the configuration :
+```yml
+pactbroker:
+  host: [your pact broker instance URL, ex: magelle.pactflow.io]
+  auth:
+    token: [your token]
+```
+
+We can now go the the contract verification.
+- Go in the `ContractVerificationTest` class which is our test class
+- uncomment `@PactBroker` which tells pact we will use the pact broker
+- uncomment `@Provider("inventory-service")` which tells pact we want to test all the contracts which have `inventory-service` as the provider
+- You can now run the test ... which will fails : `MissingStateChangeMethod: Did not find a test class method annotated with @State("A product")`
+ - Pact tries to tells us that we defined a contract with the state : "A Product" 
+ - That's true remember we wrotte : `.given("A product")` -> This is the state
+ - a state is a way to communicate a needed state in which the provider whould be to be able to test the contract.
+- simply add the following method to comply :
+```java
+@State("A product")
+void givenAProduct() {
+    when(bookInventory.findBook(any())).thenReturn(
+            new Book("ac9ab4d7-eaea-49a1-af1e-36b5acc29584",
+                    "Clean Code",
+                    BigDecimal.valueOf(39.99),
+                    5)
+    );
+}
+```
+- Run the test again, this should works now
+ - You hsould see in the logs that your contract was tested : `Verifying a pact between checkout-service (0.0.1-SNAPSHOT) and inventory-service`
+ - you can try breaking the contract to watch the test fail again
+ - If you look in yout pact broker instance, you should see that the contract is now tagged with a __Success__
+ - This means the last provider verification was successful.
 
 #### The front end
 
@@ -288,24 +446,5 @@ This interaction will be :
   - a clientId field which is a string, e.g: "yannick"
 
 Run ``` npm test``` or ```yarn test``` to generate the pact files.
-
-#### Back to Spring Cloud Contract
-
-Now you have a new Pact contracts for your front end as a consumer of inventory and checkout providers.
-
-You can push them in your "remote" contract's repository using the previous URL / directory without the .git at the end. 
-- Create directories for this new consumer for inventory and checkout providers and add the associated Pact contracts 
-- Add the pact plugin dependency in Spring Cloud Contract maven plugin. [More information here](https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.1.RELEASE/reference/html/howto.html#how-to-use-pact-broker-pact) 
-```
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-contract-pact</artifactId>
-        <version>2.2.1.RELEASE</version>
-    </dependency>
-</dependencies>
-```
-
-Run `mvn clean spring-cloud-contract:generateTests` to see the newly generated test file with the same name as the directories created previously in `target/generated-test-sources`.
 
 **Bravo ! You have successfully reached the end of workshop**

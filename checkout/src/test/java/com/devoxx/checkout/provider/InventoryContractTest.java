@@ -1,8 +1,7 @@
 package com.devoxx.checkout.provider;
 
-import au.com.dius.pact.consumer.MockServer;
-import au.com.dius.pact.consumer.dsl.LambdaDsl;
 import au.com.dius.pact.consumer.dsl.PactBuilder;
+import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.V4Pact;
@@ -37,18 +36,17 @@ class InventoryContractTest {
                 .method("GET")
                 .willRespondWith()
                 .status(200)
-                .body(LambdaDsl.newJsonBody((o) ->
-                                o.stringType("id", "8f6413e9-a2a5-449d-a563-177d8acaaa63")
-                                        .stringType("name", "Domain Driven Design")
-                                        .numberType("price", 49.5)
-                                        .numberType("stock", 12)
-                        ).build()
+                .body(new PactDslJsonBody()
+                        .stringType("id", "8f6413e9-a2a5-449d-a563-177d8acaaa63")
+                        .stringType("name", "Domain Driven Design")
+                        .numberType("price", 49.5)
+                        .numberType("stock", 12)
                 )
                 .toPact(V4Pact.class);
     }
 
     @Test
-    void test(MockServer mockServer) {
+    void test() {
         Book book = inventoryClient.retrieveBook("15");
         assertThat(book)
                 .isEqualTo(new Book("8f6413e9-a2a5-449d-a563-177d8acaaa63",
