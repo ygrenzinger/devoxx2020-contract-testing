@@ -4,8 +4,8 @@ let path = require('path');
 let options = {
   provider: 'Catalog_Provider',
   pactFilesOrDirs: [path.resolve(__dirname, 'pacts')],
-  pactBroker: 'https://magelle.pact.dius.com.au',
-  pactBrokerToken: 'ZOhnNi5ai-J1jXja2P7ytg',
+  pactBroker: 'https://magelle.pactflow.io',
+  pactBrokerToken: '[pact broker token]',
   consumerVersion: '1.0.0'
 };
 

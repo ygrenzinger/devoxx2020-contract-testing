@@ -1,5 +1,5 @@
 pactbroker:
-  host: magelle.pact.dius.com.au
+  host: magelle.pactflow.io
 
   auth:
-    token: ZOhnNi5ai-J1jXja2P7ytg
+    token: [pact broker token]

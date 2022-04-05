@@ -94,8 +94,8 @@
 				<artifactId>maven</artifactId>
 				<version>4.1.11</version>
 				<configuration>
-					<pactBrokerUrl>https://magelle.pact.dius.com.au</pactBrokerUrl>
-					<pactBrokerToken>ZOhnNi5ai-J1jXja2P7ytg</pactBrokerToken> <!-- Replace TOKEN with the actual token -->
+					<pactBrokerUrl>https://magelle.pactflow.io</pactBrokerUrl>
+					<pactBrokerToken>[pact broker token]</pactBrokerToken> <!-- Replace TOKEN with the actual token -->
 					<pactBrokerAuthenticationScheme>Bearer</pactBrokerAuthenticationScheme>
 				</configuration>
 			</plugin>
