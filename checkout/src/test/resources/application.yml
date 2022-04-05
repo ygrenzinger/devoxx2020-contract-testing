@@ -1,5 +1,5 @@
-pactbroker:
-  host: magelle.pactflow.io
-
-  auth:
-    token: [pact broker token]
+#pactbroker:
+#  host: magelle.pactflow.io
+#
+#  auth:
+#    token: [pact broker token]

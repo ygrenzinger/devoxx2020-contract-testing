@@ -41,12 +41,14 @@
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>au.com.dius.pact.provider</groupId>
 			<artifactId>junit5spring</artifactId>
 			<version>4.3.5</version>
 			<scope>test</scope>
 		</dependency>
+		-->
 	</dependencies>
 
 	<dependencyManagement>

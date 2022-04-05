@@ -46,30 +46,16 @@ describe('CheckoutServiceContract', () => {
 
   describe('CheckoutService', () => {
 
+    /*
     beforeAll((done) => {
       provider.addInteraction({
-        state: 'an order',
-        uponReceiving: 'Checkout an order',
-        withRequest: {
-          method: 'POST',
-          path: '/v1/checkouts',
-          body: order,
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        },
-        willRespondWith: {
-          status: 200,
-          body: Matchers.somethingLike(order),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
+        // An interaction
       }).then(done, error => done.fail(error));
     });
+    */
 
     it('should checkout', (done) => {
-      const checkoutService: CheckoutService = TestBed.get(CheckoutService);
+      const checkoutService: CheckoutService = TestBed.inject(CheckoutService);
       checkoutService.checkout(order).subscribe(response => {
         expect(response).toEqual(order);
         done();

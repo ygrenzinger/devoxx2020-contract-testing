@@ -1,4 +1,4 @@
-pactbroker:
-  host: magelle.pactflow.io
-  auth:
-    token: [pact broker token]
+#pactbroker:
+#  host: [your pact broker instance URL, ex: magelle.pactflow.io]
+#  auth:
+#    token: [pact broker token]

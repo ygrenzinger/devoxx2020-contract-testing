@@ -112,7 +112,9 @@ This is the [junit5 wrapper](https://docs.pact.io/implementation_guides/jvm/cons
 
 Now we will write the contract 
 - open ```InventoryContractTest``` class which contains a start
-- uncomment the annotations ```@PactTestFor(providerName = "inventory-service", port = "8080")```
+- uncomment the annotation `@ExtendWith(PactConsumerTestExt.class)`
+  - which tell junit that we want to use the pact extension
+- uncomment the annotation ```@PactTestFor(providerName = "inventory-service", port = "8080")```
   - which tell that we will test against the provider named ```inventory-service```
   - the provider mcok will be listening the port 8080
 - uncomment the ```getBookContract``` method : 
@@ -206,7 +208,7 @@ First we need to add a maven plugin.  Go in the `pom.xml` file and uncomment the
   <version>4.1.11</version>
   <configuration>
     <pactBrokerUrl>https://[my instance].pactflow.io</pactBrokerUrl>
-    <pactBrokerToken>[my api key]</pactBrokerToken> <!-- Replace TOKEN with the actual token -->
+    <pactBrokerToken>[my api key]</pactBrokerToken>
     <pactBrokerAuthenticationScheme>Bearer</pactBrokerAuthenticationScheme>
   </configuration>
 </plugin>
@@ -472,6 +474,8 @@ This interaction will be :
   - the bookId field which is the UUID, e.g: "d4d37e73-77a0-4616-8bd2-5ed983d45d14"
   - a quantity field which is a number, e.g: 2
   - a clientId field which is a string, e.g: "yannick"
+
+A start is available in ```src/app/checkout.service.pact.spec.ts```.
 
 Run ``` npm test``` or ```yarn test``` to generate the pact files.
 

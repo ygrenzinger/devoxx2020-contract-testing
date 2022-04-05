@@ -21,8 +21,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@Provider("checkout-service")
-@PactBroker
+//@Provider("checkout-service")
+//@PactBroker
 public class ContractVerificationTest {
 
     @MockBean

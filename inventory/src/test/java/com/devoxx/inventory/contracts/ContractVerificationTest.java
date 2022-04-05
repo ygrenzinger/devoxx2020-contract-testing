@@ -23,23 +23,20 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@Provider("inventory-service")
-@PactBroker
+//@Provider("inventory-service")
+//@PactBroker
 public class ContractVerificationTest {
 
     @MockBean
     private BookInventory bookInventory;
 
-    @State("A product")
-    void givenAProduct() {
-        when(bookInventory.findBook(any())).thenReturn(
-                new Book("ac9ab4d7-eaea-49a1-af1e-36b5acc29584",
-                        "Clean Code",
-                        BigDecimal.valueOf(39.99),
-                        5)
-        );
+    @TestTemplate
+    @ExtendWith(PactVerificationSpringProvider.class)
+    void pactVerificationTestTemplate(PactVerificationContext context) {
+        context.verifyInteraction();
     }
 
+    /*
     @State("several products")
     void givenSeveralProduct() {
         when(bookInventory.allBooks(anyBoolean())).thenReturn(
@@ -55,11 +52,5 @@ public class ContractVerificationTest {
                 )
         );
     }
-
-    @TestTemplate
-    @ExtendWith(PactVerificationSpringProvider.class)
-    void pactVerificationTestTemplate(PactVerificationContext context) {
-        context.verifyInteraction();
-    }
-
+    */
 }

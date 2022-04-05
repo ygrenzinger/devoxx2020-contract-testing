@@ -30,29 +30,29 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true,
-    pact: [
-      {
-        cors: true,
-        consumer: 'book-shop-basket',
-        provider: 'inventory-service',
-        port: 1234,
-        spec: 3,
-        log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
-        dir: path.resolve('pacts')
-      },
-      {
-        cors: true,
-        consumer: 'book-shop-basket',
-        provider: 'checkout-service',
-        port: 1235,
-        spec: 3,
-        log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
-        dir: path.resolve('pacts')
-      }
-    ],
-    proxies: {
-      '/v1/books': 'http://localhost:1234/v1/books',
-      '/v1/checkouts': 'http://localhost:1235/v1/checkouts'
-    }
+    // pact: [
+    //   {
+    //     cors: true,
+    //     consumer: 'book-shop-basket',
+    //     provider: 'inventory-service',
+    //     port: 1234,
+    //     spec: 3,
+    //     log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
+    //     dir: path.resolve('pacts')
+    //   },
+    //   {
+    //     cors: true,
+    //     consumer: 'book-shop-basket',
+    //     provider: 'checkout-service',
+    //     port: 1235,
+    //     spec: 3,
+    //     log: path.resolve(process.cwd(), 'logs', 'mockserver-integration.log'),
+    //     dir: path.resolve('pacts')
+    //   }
+    // ],
+    // proxies: {
+    //   '/v1/books': 'http://localhost:1234/v1/books',
+    //   '/v1/checkouts': 'http://localhost:1235/v1/checkouts'
+    // }
   });
 };
