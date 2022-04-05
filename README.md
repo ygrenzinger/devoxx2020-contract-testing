@@ -102,39 +102,46 @@ Open the ```checkout``` service.
 - open the pom.xml file
 - uncomment the following section : 
 ```xml
-		<dependency>
-			<groupId>au.com.dius.pact.consumer</groupId>
-			<artifactId>junit5</artifactId>
-			<version>4.3.6</version>
-		</dependency>
+<dependency>
+    <groupId>au.com.dius.pact.consumer</groupId>
+    <artifactId>junit5</artifactId>
+    <version>4.3.6</version>
+</dependency>
 ```
+This is the [junit5 wrapper](https://docs.pact.io/implementation_guides/jvm/consumer/junit5) of pact.
 
 Now we will write the contract 
-- open ```InventoryContractTest```class which contains a start
-- uncomment the mandatory annotation ```@PactTestFor(providerName = "inventory-service", port = "8080")``` which tell that we will test against the provider named ```ìventory-service```
+- open ```InventoryContractTest``` class which contains a start
+- uncomment the annotations ```@PactTestFor(providerName = "inventory-service", port = "8080")```
+  - which tell that we will test against the provider named ```inventory-service```
+  - the provider mcok will be listening the port 8080
 - uncomment the ```getBookContract``` method : 
 ```java
 @Pact(provider = "inventory-service", consumer = "checkout-service")
-    public V4Pact getBookContract(PactBuilder builder) {
-        return builder.usingLegacyDsl()
-                .given("A product") // This is the state
-                .uponReceiving("Get a single product")
-                .matchPath("/v1/books/.+")
-                .method("GET")
-                .willRespondWith()
-                .status(200)
-                .body(new PactDslJsonBody()
-                    .stringType("name", "maxime") // seams implementation is not finished yet
-                )
-                .toPact(V4Pact.class);
-    }
+public V4Pact getBookContract(PactBuilder builder) {
+    return builder.usingLegacyDsl()
+            .given("A product") // This is the state
+            .uponReceiving("Get a single product")
+            .matchPath("/v1/books/.+")
+            .method("GET")
+            .willRespondWith()
+            .status(200)
+            .body(new PactDslJsonBody()
+                .stringType("name", "maxime") // seams implementation is not finished yet
+            )
+            .toPact(V4Pact.class);
+}
 ```
 
-You should recognize most of the names here. 
-So we expect a `HTTP GET` on `/v1/books/{id}` to return a `HTTP 200` with a json body.
+You should recognize most of the names here. Here is what we have :
+- As a request we expect :
+  - a `HTTP GET` 
+  - on on `/v1/books/{id}`
+- as a response for this request, we expect :
+  - a `HTTP 200`
+  - with a json body
 
-The json body is not quite finished.
-
+But the json body is not quite finished.
 Implement the matcher so that the contract expect this kind of body : 
 ```json
 { 
@@ -146,18 +153,18 @@ Implement the matcher so that the contract expect this kind of body :
 ```
 Please not that this is an exemple, you should test the structure.
 
-You'll find some documentationa bout matchers [here](https://docs.pact.io/implementation_guides/jvm/consumer/junit#building-json-bodies-with-pactdsljsonbody-dsl)
+You'll find some documentation about matchers [here](https://docs.pact.io/implementation_guides/jvm/consumer/junit#building-json-bodies-with-pactdsljsonbody-dsl)
 
-Now you can run the the test (in your IDE or with `mvn test`) to see the contract created in `target/pacts`.
+Now you can run the test (with your IDE or with `mvn test`) to see the contract created in `target/pacts`.
 You should find a file named : `checkout-service-inventory-service.json`.
 This file is the exchange format of the contract.
 
-Now is time to see whether or not our consumer was properly programmed.
+Now is time to see whether our consumer was properly programmed.
 
 ##### Test the contract
 
 Now that we have a contract it's time to test it against the consumer.
-Yes witg consumer driven contract test we begin with the consumer.
+Yes with consumer driven contract test we begin with the consumer.
 
 Still in the `InventoryContractTest` you'll find a test, just below the contract definition :
 ```Java
@@ -168,22 +175,22 @@ void test() {
 }
 ```
 
-Our inventory client is called and it's result is put in the `book` variable. But this one is not tested.
+Our inventory client is called and its result is put in the `book` variable. But this one is not tested.
 
 Please add the verification that the `book` variable contains the values of the contract.
 
-Run the test, everything should works properly.
+Run the test, everything should work properly.
 
 #### Publish the contract
 
-Now we will go to the provider ad a test to check that it's verify the contract as well.
+Now we will go to the provider ad a test to check that it verifies the contract as well.
 
 But first we need to make the contract available.
 
 ##### Create a pactflow.io account
 
 To store and share contracts between services, we will use the [pact broker](https://docs.pact.io/pact_broker).
-To ease setup here we will ask you to create an account in [pactflow.io](pactflow.io)
+you could install it locally but in order to ease setup here we will ask you to create an account in [pactflow.io](pactflow.io).
 
 This is totally free don't worry.
 
@@ -191,7 +198,7 @@ Go to [pactflow.io](pactflow.io), click on the [Try for free](https://pactflow.i
 
 ##### Publish your contract
 
-First we need to add a maven plugin.  Go in the `pom.xml` file and uncoment the following plugin : 
+First we need to add a maven plugin.  Go in the `pom.xml` file and uncomment the following plugin : 
 ```xml
 <plugin>
   <groupId>au.com.dius.pact.provider</groupId>
@@ -205,9 +212,8 @@ First we need to add a maven plugin.  Go in the `pom.xml` file and uncoment the 
 </plugin>
 ```
 
-You'll have to replace both the pact broker URL which should look like : `https://XXX.pactflow.io`.
-
-You also need to give the key to allow the plugin to connect and send the contracts.
+You'll have to replace both the pact broker URL (`pactBrokerUrl`) which should look like : `https://XXX.pactflow.io`.
+You also need to give the key (`pactBrokerToken`) to allow the plugin to connect and send the contracts.
 This api key is available in the settings of your pact broker instance.
 Make sure to use the __Read/Write token__ otherwise no contract will be saved.
 
@@ -221,7 +227,7 @@ Open the `inventory` project.
 
 This is our provider. You can see the `BookController` class which declare some endpoints.
 
-First we have to add the dependency. Go in the pom.xml and uncomment the pact provider dependency : 
+First we have to add the dependency. Go in the `pom.xml` and uncomment the pact provider dependency : 
 ```xml
 <dependency>
   <groupId>au.com.dius.pact.provider</groupId>
@@ -230,7 +236,7 @@ First we have to add the dependency. Go in the pom.xml and uncomment the pact pr
   <scope>test</scope>
 </dependency>
 ```
-This a package dedicated to works with spring but you can find one only for junit5 [here](https://docs.pact.io/implementation_guides/jvm/provider/junit5spring)
+This a package dedicated to work with spring, but you can find one only for junit5 (other tools and other languages are available as well) [here](https://docs.pact.io/implementation_guides/jvm/provider/junit5spring)
 
 Second we have to tell pact where to get the contracts it should verify.
 - Open the configuration file `src/test/resources/application.yml`
@@ -247,9 +253,9 @@ We can now go the the contract verification.
 - uncomment `@PactBroker` which tells pact we will use the pact broker
 - uncomment `@Provider("inventory-service")` which tells pact we want to test all the contracts which have `inventory-service` as the provider
 - You can now run the test ... which will fails : `MissingStateChangeMethod: Did not find a test class method annotated with @State("A product")`
- - Pact tries to tells us that we defined a contract with the state : "A Product" 
- - That's true remember we wrotte : `.given("A product")` -> This is the state
- - a state is a way to communicate a needed state in which the provider whould be to be able to test the contract.
+ - Pact tries to tell us that we defined a contract with the state : "A Product" 
+ - That's true remember we wrote : `.given("A product")` -> This is the state
+ - a state is a way to communicate a needed state in which the provider would be to be able to test the contract.
 - simply add the following method to comply :
 ```java
 @State("A product")
@@ -262,26 +268,26 @@ void givenAProduct() {
     );
 }
 ```
-- Run the test again, this should works now
- - You hsould see in the logs that your contract was tested : `Verifying a pact between checkout-service (0.0.1-SNAPSHOT) and inventory-service`
+- Run the test again, this should work now
+ - You should see in the logs that your contract was tested : `Verifying a pact between checkout-service (0.0.1-SNAPSHOT) and inventory-service`
  - you can try breaking the contract to watch the test fail again
- - If you look in yout pact broker instance, you should see that the contract is now tagged with a __Success__
+ - If you look in your pact broker instance, you should see that the contract is now tagged with a __Success__
  - This means the last provider verification was successful.
 
 
 
 #### Another contract, in JavaScript (or Typescript actually)
 
-First of all open ```book-shop-basket```. This is our frontend.
+First open ```book-shop-basket```. This is our frontend.
 
-Book-Shop-Basket is the basket of our book shop. Its role is to present all books to the user allow it to select some and checkout the basket.
+Book-Shop-Basket is the basket of our bookshop. Its role is to present all books to the user allow it to select some and checkout the basket.
 
 The ```book-shop-basket``` will need to get all available books from the ```inventory``` service. Then it will need to send the basket to the ```checkout``` service.
 
 We will need two contracts : 
 
 - get all book from inventory
-- send the bask for checkout
+- send the basket for checkout
 
 As we are in consumer driven contract testing the contracts will be defined by ... the consumer. ```book-shop-basket``` in our case.
 
@@ -347,7 +353,7 @@ So we tell Pact that we will create contracts between ```book-shop-basket``` and
 
 ```spec: 3``` express that we will use the version 3 of the contract specification as there is several.
 
-```log``` and ```dir``` configure respectively where will be write the logs and the contracts.
+```log``` and ```dir``` configure respectively where will be written the logs and the contracts.
 
 Then comes the proxy configuration.
 
@@ -434,7 +440,7 @@ This should create the contracts files in the ```pacts``` folder.
 
 Open the `publish-pact.ts` file.
 
-This is a small script which will deliver the congtracts to the pact broker.
+This is a small script which will deliver the contracts to the pact broker.
 
 You just have to change the pact broker URL and token to make it work : 
 ```ts
