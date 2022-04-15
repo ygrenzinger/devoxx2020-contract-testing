@@ -24,6 +24,7 @@ import java.time.temporal.ChronoUnit;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureStubRunner(ids = "com.devoxx:inventory:+:stubs:8080", stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 @AutoConfigureMessageVerifier
 @DirtiesContext
 public class ContractsBase {
@@ -31,8 +32,8 @@ public class ContractsBase {
     @Autowired
     private WebApplicationContext context;
 
-    //@Autowired
-    //private MessageVerifier verifier;
+    @Autowired
+    private MessageVerifier verifier;
 
     @Autowired
     private Delivery delivery;
@@ -43,7 +44,8 @@ public class ContractsBase {
     }
 
     public void sendOrder() {
-        // TO COMPLETE
+        ValidatedOrder validatedOrder = new ValidatedOrder("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 10, "yannick", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+        delivery.send(validatedOrder);
     }
 
 
