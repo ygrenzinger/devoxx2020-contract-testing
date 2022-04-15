@@ -49,7 +49,6 @@ public class InMemoryBookInventory implements BookInventory {
     private Book changeStock(String bookId, IntFunction<Integer> fn) {
         Book book = inventory.get(bookId);
         int remaining = fn.apply(book.getStock());
-        book.changeStock(remaining);
-        return book;
+        return book.changeStock(remaining);
     }
 }
