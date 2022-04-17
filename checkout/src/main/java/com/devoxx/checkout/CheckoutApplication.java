@@ -1,10 +1,8 @@
 package com.devoxx.checkout;
 
-import com.devoxx.checkout.provider.Streams;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
@@ -19,14 +17,13 @@ import java.io.IOException;
 import static java.util.Collections.singletonList;
 
 @SpringBootApplication
-@EnableBinding(Streams.class)
 public class CheckoutApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CheckoutApplication.class, args);
     }
 
-    class JsonRequestInterceptor implements ClientHttpRequestInterceptor {
+    static class JsonRequestInterceptor implements ClientHttpRequestInterceptor {
 
         @Override
         public ClientHttpResponse intercept(HttpRequest request, byte[] body,
