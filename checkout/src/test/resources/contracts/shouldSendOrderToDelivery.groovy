@@ -15,9 +15,5 @@ Contract.make {
                 clientId: 'yannick',
                 createdAt: anyDateTime()
         )
-        headers {
-            header('SENDER', 'checkout')
-            messagingContentType(applicationJson())
-        }
     }
 }
